@@ -1,12 +1,7 @@
-import { Button } from '@/components/atoms/Button';
-
-const Navbar = () => {
-  return (
-    <nav className='m-10 bg-primary p-20'>
-      <h1>TO DO LIST APP</h1>
-      <Button color='danger'>Test button</Button>
-    </nav>
-  );
-};
+const Navbar = () => (
+  <nav className='h-[105px] w-full bg-primary px-12 py-9 md:px-32 lg:px-48'>
+    <h1 className='text-2xl font-bold text-white'>TO DO LIST APP</h1>
+  </nav>
+);
 
 export default Navbar;
