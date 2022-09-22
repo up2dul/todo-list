@@ -9,11 +9,11 @@ type ButtonProps = {
 export const Button = (props: ButtonProps) => {
   const { children, color } = props;
 
-  const classes = clsx(
-    'w-[150px] h-[54px] font-bold  rounded-full',
+  const classes: string = clsx(
+    'w-[150px] h-[54px] rounded-full font-bold',
     color === 'primary' && 'bg-primary text-white',
     color === 'danger' && 'bg-danger text-white',
-    color === 'light' && 'bg-gray text-black'
+    color === 'light' && 'bg-light text-black'
   );
 
   return <button className={classes}>{children}</button>;
