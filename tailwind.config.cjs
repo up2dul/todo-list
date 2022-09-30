@@ -11,6 +11,7 @@ module.exports = {
       secondary: '#E5E5E5',
       danger: '#ED4C5C',
       white: '#FFFFFF',
+      gray: '#888888',
       black: '#111111',
       light: '#F4F4F4'
     }
