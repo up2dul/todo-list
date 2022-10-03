@@ -4,7 +4,7 @@ export const SortList = () => {
   return (
     <div className='relative'>
       <div className='absolute -left-24 top-8'>
-        <ul data-cy='sort-parent' className='rounded-md bg-white text-dark shadow-md'>
+        <ul data-cy='sort-parent' className='rounded-md bg-light-1 text-dark-2 shadow-md'>
           <SortItem />
           {/* <li data-cy='sort-latest' className=''>
             <div className='flex items-center gap-3'>

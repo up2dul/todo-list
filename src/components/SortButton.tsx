@@ -3,7 +3,7 @@ import { SortList } from './SortList';
 
 export const SortButton = () => (
   <>
-    <div className='cursor-pointer rounded-full border border-secondary border-gray p-3 text-2xl text-gray hover:bg-gray/20'>
+    <div className='cursor-pointer rounded-full border border-secondary border-dark-3 p-3 text-2xl text-dark-3 hover:bg-dark-3/20'>
       <TbArrowsUpDown />
     </div>
 
