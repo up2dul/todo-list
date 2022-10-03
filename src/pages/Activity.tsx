@@ -20,18 +20,15 @@ export const Activity = () => {
             </span>
           </Link>
 
-          <h1 data-cy='todo-title' className='text-4xl font-bold text-black'>
+          <h1 data-cy='todo-title' className='text-4xl font-bold text-dark-1'>
             New Activity
           </h1>
 
-          <span data-cy='todo-title-edit-button' className='cursor-pointer text-2xl text-gray'>
+          <span data-cy='todo-title-edit-button' className='cursor-pointer text-2xl text-dark-3'>
             <TbPencil />
           </span>
         </div>
 
-        {/* <Button cy='todo-add-button' color='primary'>
-          <TbPlus /> Tambah
-        </Button> */}
         <div className='flex items-center gap-5'>
           <SortButton />
           <Button cy='todo-add-button' color='primary'>

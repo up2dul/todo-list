@@ -7,7 +7,7 @@ export const SortItem = () => {
     'flex items-center justify-between',
     'border-b border-secondary',
     'py-4 px-5',
-    'cursor-pointer hover:bg-gray/20'
+    'cursor-pointer hover:bg-dark-3/20'
   );
 
   return (

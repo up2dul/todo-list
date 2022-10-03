@@ -9,7 +9,7 @@ export const Dashboard = () => {
   return (
     <BaseLayout>
       <div className='flex items-center justify-between'>
-        <h1 data-cy='activity-title' className='text-4xl font-bold text-black'>
+        <h1 data-cy='activity-title' className='text-4xl font-bold text-dark-1'>
           Activity
         </h1>
 
