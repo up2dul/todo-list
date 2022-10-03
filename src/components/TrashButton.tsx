@@ -5,10 +5,7 @@ type TrashButtonProps = {
 };
 
 export const TrashButton = ({ buttonType }: TrashButtonProps) => (
-  <span
-    data-cy={`${buttonType}-item-delete-button`}
-    className='cursor-pointer text-2xl text-gray'
-    title={`Delete ${buttonType}`}>
-    <TbTrash />
+  <span data-cy={`${buttonType}-item-delete-button`} title={`Delete ${buttonType}`}>
+    <TbTrash className='cursor-pointer text-2xl text-dark-3 hover:text-dark-1' />
   </span>
 );
