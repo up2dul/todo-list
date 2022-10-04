@@ -1,4 +1,4 @@
-import { SortItem } from './SortItem';
+import { SortItem } from '@/components';
 
 export const SortList = () => {
   return (

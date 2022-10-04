@@ -1,6 +1,6 @@
 import { TbPencil } from 'react-icons/tb';
 
-import { TrashButton } from './TrashButton';
+import { TrashButton } from '@/components';
 
 export const TodoItem = () => (
   <div className='flex items-center justify-between rounded-xl bg-light-1 p-7 shadow-md'>

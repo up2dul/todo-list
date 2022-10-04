@@ -1,4 +1,4 @@
-import { TrashButton } from './TrashButton';
+import { TrashButton } from '@/components';
 
 type ActivityCardProps = {
   cy: string;

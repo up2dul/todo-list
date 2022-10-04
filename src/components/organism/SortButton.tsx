@@ -1,5 +1,6 @@
 import { TbArrowsUpDown } from 'react-icons/tb';
-import { SortList } from './SortList';
+
+import { SortList } from '@/components';
 
 export const SortButton = () => (
   <>
