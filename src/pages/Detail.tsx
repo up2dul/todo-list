@@ -6,7 +6,7 @@ import { Button, SortButton, TodoItem } from '@/components';
 
 // import addTodoList from '@/assets/svg/add-todo-list.svg';
 
-export const Activity = () => {
+export const Detail = () => {
   return (
     <BaseLayout>
       <div className='flex items-center justify-between'>
