@@ -1,8 +1,10 @@
 import clsx from 'clsx';
-import { TbCheck, TbSortDescending } from 'react-icons/tb';
+import { TbCheck } from 'react-icons/tb';
 
-export const SortItem = () => {
-  const liClasses: string = clsx(
+import type { SortItemProps } from '@/types';
+
+export const SortItem = ({ cy, icon, title, isChecked }: SortItemProps) => {
+  const classes: string = clsx(
     'w-[235px]',
     'flex items-center justify-between',
     'border-b border-secondary',
@@ -11,12 +13,12 @@ export const SortItem = () => {
   );
 
   return (
-    <li data-cy='sort-latest' className={liClasses}>
+    <li data-cy={cy} className={classes}>
       <div className='flex items-center gap-3'>
-        <TbSortDescending className='text-primary' />
-        <span>Terbaru</span>
+        {icon}
+        <span>{title}</span>
       </div>
-      <TbCheck />
+      {isChecked && <TbCheck />}
     </li>
   );
 };
