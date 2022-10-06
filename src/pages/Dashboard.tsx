@@ -1,6 +1,6 @@
 import { TbPlus } from 'react-icons/tb';
 
-import { BaseLayout } from '@/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { ActivityCard, Button } from '@/components';
 
 // import addActivitySvg from '@/assets/svg/add-activity.svg';

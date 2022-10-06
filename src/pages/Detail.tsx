@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
-import { BaseLayout } from '@/layouts';
+import { BaseLayout } from '@/components/layouts';
 import { Button, SortButton, TodoItem } from '@/components';
 
 // import addTodoList from '@/assets/svg/add-todo-list.svg';
@@ -15,7 +15,8 @@ export const Detail = () => {
             <span
               data-cy='todo-back-button'
               className='cursor-pointer text-3xl'
-              title='Back to dashboard'>
+              title='Back to dashboard'
+            >
               <TbChevronLeft />
             </span>
           </Link>
