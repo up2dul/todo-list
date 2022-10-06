@@ -13,11 +13,12 @@ export const Dashboard = () => {
           Activity
         </h1>
 
-        <Button cy='activity-add-button' color='primary'>
+        <Button cy='activity-add-button' onClick={() => console.log('ntar dlu')} color='primary'>
           <TbPlus /> Tambah
         </Button>
       </div>
 
+      {/* illustration */}
       {/* <div className='mt-24 flex justify-center'>
         <img data-cy='activity-empty-state' src={addActivitySvg} alt='add first activity' className='cursor-pointer' />
       </div> */}
