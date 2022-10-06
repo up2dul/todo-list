@@ -4,11 +4,12 @@ import clsx from 'clsx';
 type ButtonProps = {
   children: ReactNode;
   cy: string;
+  onClick: () => void;
   color: 'primary' | 'danger' | 'light';
   isDisabled?: boolean;
 };
 
-export const Button = ({ children, cy, color }: ButtonProps) => {
+export const Button = ({ children, cy, onClick, color }: ButtonProps) => {
   const classes: string = clsx(
     'flex h-[54px] w-[150px] items-center justify-center rounded-full text-lg font-medium',
     color === 'primary' && 'bg-primary text-light-1 hover:bg-primary/80',
@@ -17,7 +18,7 @@ export const Button = ({ children, cy, color }: ButtonProps) => {
   );
 
   return (
-    <button data-cy={cy} className={classes}>
+    <button data-cy={cy} onClick={() => onClick()} className={classes}>
       {children}
     </button>
   );
