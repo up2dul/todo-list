@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
-import { TbArrowsUpDown } from 'react-icons/tb';
+import { TbChevronDown } from 'react-icons/tb';
 
 import { useClickOutside } from '@/hooks';
-import { SortList } from '@/components';
+import { PriorityList } from '@/components';
 
-export const SortButton = () => {
+export const PriorityButton = () => {
   const [isExpand, setIsExpand] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -17,13 +17,14 @@ export const SortButton = () => {
     <div className='relative'>
       <button
         ref={buttonRef}
-        data-cy='todo-sort-button'
+        type='button'
+        data-cy='modal-add-priority-dropdown'
         onClick={handleToggle}
-        className='cursor-pointer rounded-full border border-secondary p-3 text-2xl text-dark-3 hover:bg-secondary'>
-        <TbArrowsUpDown />
+        className='w-1/4 cursor-pointer rounded-md border border-secondary p-3'>
+        Very High <TbChevronDown className='inline' />
       </button>
 
-      {isExpand && <SortList />}
+      {isExpand && <PriorityList />}
     </div>
   );
 };
