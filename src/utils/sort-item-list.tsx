@@ -6,9 +6,9 @@ import {
   TbSortDescendingLetters
 } from 'react-icons/tb';
 
-import type { SortItemProps } from '@/types';
+import type { DropdownItemProps } from '@/types';
 
-export const sortItemList: SortItemProps[] = [
+export const sortItemList: DropdownItemProps[] = [
   {
     cy: 'sort-latest',
     icon: <TbSortDescending className='text-primary' />,

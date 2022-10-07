@@ -1,6 +1,6 @@
-import type { SortItemProps } from '@/types';
+import type { DropdownItemProps } from '@/types';
 
-export const priorityItemList: SortItemProps[] = [
+export const priorityItemList: DropdownItemProps[] = [
   {
     cy: 'modal-add-priority-very-high',
     icon: <div className='h-3 w-3 rounded-full bg-priority-vh'></div>,

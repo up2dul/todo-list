@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export type SortItemProps = {
+export type DropdownItemProps = {
   cy: string;
   icon: ReactNode;
   title: string;

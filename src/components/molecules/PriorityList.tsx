@@ -1,4 +1,4 @@
-import type { SortItemProps } from '@/types';
+import type { DropdownItemProps } from '@/types';
 import { priorityItemList } from '@/utils';
 import { PriorityItem } from '@/components';
 
@@ -8,7 +8,7 @@ export const PriorityList = () => {
       <ul
         data-cy='sort-parent'
         className='h-36 overflow-scroll rounded-md bg-light-1 text-dark-2 shadow-md'>
-        {priorityItemList.map((props: SortItemProps) => (
+        {priorityItemList.map((props: DropdownItemProps) => (
           <PriorityItem key={props.cy} {...props} />
         ))}
       </ul>
