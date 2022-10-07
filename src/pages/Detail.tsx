@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { TbCheck, TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
 import { useClickOutside } from '@/hooks';
-import { BaseLayout } from '@/components/layouts';
-import { Button, Modal, SortButton, TodoItem } from '@/components';
+import { BaseLayout, Overlay } from '@/components/layouts';
+import { Button, ModalAdd, SortButton, TodoItem } from '@/components';
 
 // import addTodoList from '@/assets/svg/add-todo-list.svg';
 
@@ -80,9 +80,9 @@ export const Detail = () => {
       </BaseLayout>
 
       {isModal && (
-        <div className='absolute top-0 flex h-full w-full items-center justify-center bg-dark-3/50'>
-          <Modal handleClickOutside={() => setIsModal(false)} />
-        </div>
+        <Overlay>
+          <ModalAdd handleClickOutside={() => setIsModal(false)} />
+        </Overlay>
       )}
     </>
   );
