@@ -7,7 +7,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Dashboard />} />
-        <Route path='detail' element={<Detail />} />
+        <Route path='/detail/:activityId' element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );
