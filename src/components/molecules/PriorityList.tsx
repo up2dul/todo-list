@@ -1,5 +1,5 @@
 import type { DropdownItemProps } from '@/types';
-import { priorityItemList } from '@/utils';
+import { priorityItemList } from '@/services/utils';
 import { PriorityItem } from '@/components';
 
 export const PriorityList = () => {

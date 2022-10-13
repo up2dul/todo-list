@@ -1,6 +1,6 @@
 import type { DropdownItemProps } from '@/types';
 import { SortItem } from '@/components';
-import { sortItemList } from '@/utils';
+import { sortItemList } from '@/services/utils';
 
 export const SortList = () => {
   return (
