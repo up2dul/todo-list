@@ -5,17 +5,20 @@ import { useClickOutside } from '@/hooks';
 import { FormLayout } from '@/components/layouts';
 import { Button, PriorityButton } from '@/components';
 
-type ModalProps = {
+type ModalAddProps = {
   handleClickOutside: () => void;
 };
 
-export const ModalAdd = ({ handleClickOutside }: ModalProps) => {
+export const ModalAdd = ({ handleClickOutside }: ModalAddProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(modalRef, handleClickOutside);
 
   return (
-    <div ref={modalRef} data-cy='temp' className='w-3/4 rounded-lg bg-light-1 text-dark-1 lg:w-1/2'>
+    <div
+      ref={modalRef}
+      data-cy='modal-add'
+      className='w-3/4 rounded-lg bg-light-1 text-dark-1 lg:w-1/2'>
       <div className='flex items-center justify-between border-b border-secondary px-10 py-6 font-medium'>
         <h1 className='text-lg text-dark-1'>Tambah list item</h1>
         <TbX
