@@ -20,6 +20,6 @@ export const TodoItem = () => (
       </span>
     </div>
 
-    <TrashButton buttonType='todo' />
+    <TrashButton buttonType='todo' onClick={() => console.log('temporary handler')} />
   </div>
 );
