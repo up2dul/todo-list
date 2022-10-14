@@ -7,11 +7,11 @@ import { ActivityCard } from '@/components';
 
 export const ActivityList = () => {
   const { activities, setActivities } = useActivity((state) => state);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     getActivities();
-    console.log(activities);
   }, []);
 
   const getActivities = async () => {
