@@ -9,7 +9,9 @@ type State = {
 
 type Activities = {
   activities: State[];
+  detailActivity: State;
   setActivities: (data: State[]) => void;
+  setDetailActivity: (data: State) => void;
   addActivityState: (data: State) => void;
   updateActivityState: (newData: State) => void;
   deleteActivityState: (id: number) => void;
@@ -17,9 +19,18 @@ type Activities = {
 
 export const useActivity = create<Activities>((set) => ({
   activities: [],
+  detailActivity: {
+    id: 0,
+    title: '',
+    created_at: new Date()
+  },
 
   setActivities: (data: State[]) => {
     set({ activities: data });
+  },
+
+  setDetailActivity: (data: State) => {
+    set({ detailActivity: data });
   },
 
   addActivityState: (newData: State) => {
