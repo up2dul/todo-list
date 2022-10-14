@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
@@ -12,24 +12,26 @@ import { Button, ModalAdd, SortButton, TodoItem } from '@/components';
 export const Detail = () => {
   const { activityId } = useParams();
 
+  const [isModal, setIsModal] = useState<boolean>(false);
+
+  const inputTitleRef = useRef<HTMLInputElement>(null);
+
   const { updateActivityState } = useActivity((state) => state);
   const activity = useActivity(
     (state) => state.activities.filter((a) => a.id + '' === activityId)[0]
   );
 
-  const [title, setTitle] = useState<string>(activity?.title);
-  const [isModal, setIsModal] = useState<boolean>(false);
-
   const handleBlur = async () => {
     const newData = activity;
-    newData.title = title;
+    const newTitle = inputTitleRef.current?.value;
+    newData.title = newTitle + '';
+
     try {
       await update(activityId, newData);
       updateActivityState(newData);
     } catch (err) {
       console.log(err);
     }
-    console.log(title);
   };
 
   return (
@@ -47,10 +49,10 @@ export const Detail = () => {
             </Link>
 
             <input
+              ref={inputTitleRef}
               type='text'
-              value={title}
+              defaultValue={activity?.title}
               maxLength={26}
-              onChange={(e) => setTitle(e.target.value)}
               onBlur={handleBlur}
               className='w-3/4 bg-light-2 text-4xl font-bold text-dark-1 outline-none focus:border-b'
             />
