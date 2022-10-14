@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { remove } from '@/services/api/activity';
-import { useActivity } from '@/services/store';
+import { useModalDelete } from '@/services/store';
 import { formatedDate } from '@/services/utils';
 import { TrashButton } from '@/components';
 
@@ -13,12 +12,11 @@ type ActivityCardProps = {
 };
 
 export const ActivityCard = ({ cy, to, title, date }: ActivityCardProps) => {
-  const { deleteActivityState } = useActivity((state) => state);
+  const { setActivityModal, openModal } = useModalDelete((state) => state);
 
-  const handleDelete = async () => {
-    await remove(to + '')
-      .then(() => deleteActivityState(to))
-      .catch((err) => console.log(err));
+  const handleButtonDelete = () => {
+    setActivityModal(to, title);
+    openModal();
   };
 
   return (
@@ -34,7 +32,7 @@ export const ActivityCard = ({ cy, to, title, date }: ActivityCardProps) => {
       <div className='flex items-center justify-between text-sm font-medium text-dark-3'>
         <p data-cy='activity-item-date'>{formatedDate(date)}</p>
 
-        <TrashButton buttonType='activity' onClick={handleDelete} />
+        <TrashButton buttonType='activity' onClick={handleButtonDelete} />
       </div>
     </div>
   );
