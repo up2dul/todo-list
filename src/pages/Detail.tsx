@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
-import { update } from '@/services/api/activity';
+import { getDetail, update } from '@/services/api/activity';
 import { useActivity } from '@/services/store';
 import { BaseLayout, Overlay } from '@/components/layouts';
 import { Button, ModalAdd, SortButton, TodoItem } from '@/components';
@@ -12,17 +12,27 @@ import { Button, ModalAdd, SortButton, TodoItem } from '@/components';
 export const Detail = () => {
   const { activityId } = useParams();
 
+  const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
   const [isModal, setIsModal] = useState<boolean>(false);
 
   const inputTitleRef = useRef<HTMLInputElement>(null);
 
-  const { updateActivityState } = useActivity((state) => state);
-  const activity = useActivity(
-    (state) => state.activities.filter((a) => a.id + '' === activityId)[0]
-  );
+  const { detailActivity, setDetailActivity, updateActivityState } = useActivity((state) => state);
+
+  useEffect(() => {
+    getActivity();
+  }, []);
+
+  const getActivity = async () => {
+    await getDetail(activityId)
+      .then((res) => setDetailActivity(res.data))
+      .catch((err) => console.log(err));
+  };
 
   const handleBlur = async () => {
-    const newData = activity;
+    setIsEditTitle(false);
+
+    const newData = detailActivity;
     const newTitle = inputTitleRef.current?.value;
     newData.title = newTitle + '';
 
@@ -37,7 +47,7 @@ export const Detail = () => {
   return (
     <>
       <BaseLayout>
-        <div className='flex items-center justify-between'>
+        <div className='flex items-center justify-between gap-5'>
           <div className='flex items-center gap-5'>
             <Link to='/'>
               <span
@@ -48,16 +58,27 @@ export const Detail = () => {
               </span>
             </Link>
 
-            <input
-              ref={inputTitleRef}
-              type='text'
-              defaultValue={activity?.title}
-              maxLength={26}
-              onBlur={handleBlur}
-              className='w-3/4 bg-light-2 text-4xl font-bold text-dark-1 outline-none focus:border-b'
-            />
+            {isEditTitle ? (
+              <input
+                ref={inputTitleRef}
+                type='text'
+                defaultValue={detailActivity?.title}
+                maxLength={26}
+                onBlur={handleBlur}
+                className='w-3/4 bg-light-2 text-4xl font-bold text-dark-1 outline-none focus:border-b'
+                autoFocus
+              />
+            ) : (
+              <h1 data-cy='todo-title' className='text-4xl font-bold text-dark-1'>
+                {detailActivity?.title}
+              </h1>
+            )}
 
-            <span data-cy='todo-title-edit-button' className='cursor-pointer text-2xl text-dark-3'>
+            <span
+              data-cy='todo-title-edit-button'
+              className='cursor-pointer text-2xl text-dark-3'
+              title='Edit title'
+              onClick={() => setIsEditTitle(true)}>
               <TbPencil />
             </span>
           </div>
