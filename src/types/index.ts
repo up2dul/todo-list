@@ -17,6 +17,12 @@ export type Todo = {
 
 export type Priority = 'very-high' | 'high' | 'medium' | 'low' | 'very-low';
 
+export type TodoData = {
+  title: string;
+  is_active: boolean;
+  priority: Priority;
+};
+
 export type SortType =
   | 'sort-latest'
   | 'sort-oldest'
