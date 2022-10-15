@@ -18,7 +18,7 @@ export const Button = ({ children, cy, onClick, color }: ButtonProps) => {
   );
 
   return (
-    <button data-cy={cy} onClick={() => onClick()} className={classes}>
+    <button data-cy={cy} onClick={onClick} className={classes}>
       {children}
     </button>
   );
