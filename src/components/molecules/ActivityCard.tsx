@@ -12,10 +12,10 @@ type ActivityCardProps = {
 };
 
 export const ActivityCard = ({ cy, to, title, date }: ActivityCardProps) => {
-  const { setActivityModal, openModal } = useModalDelete((state) => state);
+  const { setModal, openModal } = useModalDelete((state) => state);
 
   const handleButtonDelete = () => {
-    setActivityModal(to, title);
+    setModal(to, title);
     openModal();
   };
 

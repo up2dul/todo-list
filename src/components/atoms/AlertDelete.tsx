@@ -4,7 +4,7 @@ import { TbAlertCircle } from 'react-icons/tb';
 import { useAlertInformation } from '@/services/store';
 import { useClickOutside } from '@/hooks';
 
-export const AlertDelete = () => {
+export const AlertDelete = ({ type }: { type: 'activity' | 'todo' }) => {
   const alertRef = useRef<HTMLDivElement>(null);
 
   const { closeAlert } = useAlertInformation((state) => state);
@@ -22,7 +22,7 @@ export const AlertDelete = () => {
         <TbAlertCircle className='h-6 w-6 text-primary' />
       </span>
       <p data-cy='modal-information-title' className='font-medium text-dark-1'>
-        Activity berhasil dihapus
+        Data {type} berhasil dihapus
       </p>
     </div>
   );

@@ -1,30 +1,47 @@
 import { useRef } from 'react';
 
-import { remove } from '@/services/api/activity';
-import { useActivity, useAlertInformation, useModalDelete } from '@/services/store';
+import * as aApi from '@/services/api/activity';
+import * as tApi from '@/services/api/todo';
+import { useActivity, useAlertInformation, useModalDelete, useTodo } from '@/services/store';
 import { useClickOutside } from '@/hooks';
 import { Button } from '@/components';
 
 import modalDeleteIcon from '@/assets/svg/modal-delete-icon.svg';
 
-export const ModalDelete = () => {
+export const ModalDelete = ({ type }: { type: 'activity' | 'todo' }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const { deleteActivityState } = useActivity((state) => state);
-  const { activityModal, setActivityModal, closeModal } = useModalDelete((state) => state);
+  const { deleteTodoState } = useTodo((state) => state);
+  const { modal, setModal, closeModal } = useModalDelete((state) => state);
   const { openAlert } = useAlertInformation((state) => state);
 
-  const { id: aId, title } = activityModal;
+  const { id: dataId, title } = modal;
 
   const handleDelete = async () => {
-    await remove(aId + '')
-      .then(() => deleteActivityState(aId))
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setActivityModal(0, '');
-        closeModal();
-        openAlert();
-      });
+    if (type === 'activity') {
+      await aApi
+        .remove(dataId + '')
+        .then(() => deleteActivityState(dataId))
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setModal(0, '');
+          closeModal();
+          openAlert();
+        });
+    }
+
+    if (type === 'todo') {
+      await tApi
+        .remove(dataId + '')
+        .then(() => deleteTodoState(dataId))
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setModal(0, '');
+          closeModal();
+          openAlert();
+        });
+    }
   };
 
   const handleCloseModal = () => closeModal();
@@ -44,7 +61,7 @@ export const ModalDelete = () => {
       />
 
       <p data-cy='modal-delete-title' className='text-center text-lg'>
-        Apakah anda yakin menghapus activity <br />
+        Apakah anda yakin menghapus {type} <br />
         <span className='font-bold'>“{title}”?</span>
       </p>
 

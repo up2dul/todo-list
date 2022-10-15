@@ -7,23 +7,23 @@ type Modal = {
 };
 
 type ModalDelete = {
-  activityModal: Modal;
+  modal: Modal;
   isShow: boolean;
-  setActivityModal: (id: number, title: string) => void;
+  setModal: (id: number, title: string) => void;
   openModal: () => void;
   closeModal: () => void;
 };
 
-const initActivity: Modal = {
+const initialData: Modal = {
   id: 0,
   title: ''
 };
 
 export const useModalDelete = create<ModalDelete>((set) => ({
-  activityModal: initActivity,
+  modal: initialData,
   isShow: false,
-  setActivityModal: (id: number, title: string) => {
-    set({ activityModal: { id, title } });
+  setModal: (id: number, title: string) => {
+    set({ modal: { id, title } });
   },
   openModal: () => set({ isShow: true }),
   closeModal: () => set({ isShow: false })

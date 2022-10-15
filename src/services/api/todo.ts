@@ -1,16 +1,12 @@
 import axios from 'axios';
 
+import type { TodoData } from '@/types';
+
 const { VITE_BASE_URL } = import.meta.env;
 
 const http = axios.create({
   baseURL: VITE_BASE_URL
 });
-
-type TodoData = {
-  activity_group_id: number;
-  title: string;
-  priority: 'very-high' | 'high' | 'medium' | 'low' | 'very-low';
-};
 
 export const getAll = (activityId: string | undefined) => {
   return http.get('/todo-items?activity_group_id=' + activityId);

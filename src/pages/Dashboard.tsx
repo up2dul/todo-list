@@ -47,13 +47,13 @@ export const Dashboard = () => {
 
       {isShowModalDelete && (
         <Overlay>
-          <ModalDelete />
+          <ModalDelete type='activity' />
         </Overlay>
       )}
 
       {isShowAlertDelete && (
         <Overlay>
-          <AlertDelete />
+          <AlertDelete type='activity' />
         </Overlay>
       )}
     </>
