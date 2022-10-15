@@ -38,14 +38,8 @@ export const ActivityList = () => {
 
   return (
     <div className='mt-12 grid gap-x-5 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-      {activities.map((activity, i) => (
-        <ActivityCard
-          cy={'activity-item-' + i}
-          to={activity.id}
-          key={activity.id}
-          title={activity.title}
-          date={activity.created_at}
-        />
+      {activities?.map(({ id, title, created_at }, i) => (
+        <ActivityCard key={id} cy={'activity-item-' + i} to={id} title={title} date={created_at} />
       ))}
     </div>
   );
