@@ -1,33 +1,34 @@
-import type { DropdownItemProps } from '@/types';
+import type { TodoSortProps } from '@/types';
+import { PriorityIndicator } from '@/components';
 
-export const priorityItemList: DropdownItemProps[] = [
+export const priorityItemList: TodoSortProps[] = [
   {
     cy: 'modal-add-priority-very-high',
-    icon: <div className='h-3 w-3 rounded-full bg-priority-vh'></div>,
+    icon: <PriorityIndicator priority='very-high' />,
     title: 'Very High',
     isChecked: true
   },
   {
     cy: 'modal-add-priority-high',
-    icon: <div className='h-3 w-3 rounded-full bg-priority-h'></div>,
+    icon: <PriorityIndicator priority='high' />,
     title: 'High',
     isChecked: false
   },
   {
     cy: 'modal-add-priority-medium',
-    icon: <div className='h-3 w-3 rounded-full bg-priority-m'></div>,
+    icon: <PriorityIndicator priority='medium' />,
     title: 'Medium',
     isChecked: false
   },
   {
     cy: 'modal-add-priority-low',
-    icon: <div className='h-3 w-3 rounded-full bg-priority-l'></div>,
+    icon: <PriorityIndicator priority='low' />,
     title: 'Low',
     isChecked: false
   },
   {
     cy: 'modal-add-priority-very-low',
-    icon: <div className='h-3 w-3 rounded-full bg-priority-vl'></div>,
+    icon: <PriorityIndicator priority='very-low' />,
     title: 'Very Low',
     isChecked: false
   }

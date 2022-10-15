@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import create from 'zustand';
 
-import type { Todo } from './use-todo';
+import type { Todo } from '@/types';
 
 type Activity = {
   id: number;
