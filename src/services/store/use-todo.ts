@@ -1,13 +1,16 @@
 /* eslint-disable no-unused-vars */
 import create from 'zustand';
 
-import type { Priority, SortType, Todo } from '@/types';
+import type { SortType, Todo } from '@/types';
 import { todosSorter } from '@/services/utils';
 
 type Todos = {
   todos: Todo[];
   detailTodo: Todo;
   setTodos: (data: Todo[]) => void;
+  addTodoState: (newData: Todo) => void;
+  updateTodoState: (newData: Todo) => void;
+  deleteTodoState: (id: number) => void;
   sortTodos: (sortBy: SortType) => void;
 };
 
@@ -23,6 +26,30 @@ export const useTodo = create<Todos>((set) => ({
 
   setTodos: (data: Todo[]) => {
     set({ todos: data });
+  },
+
+  addTodoState: (newData: Todo) => {
+    set((state) => ({
+      todos: [newData, ...state.todos]
+    }));
+  },
+
+  updateTodoState: (newData: Todo) => {
+    const updateTodo = (todos: Todo[]) => {
+      todos.forEach((todo) => {
+        if (todo.id === newData.id) todo = newData;
+      });
+      return todos;
+    };
+    set((state) => ({
+      todos: updateTodo(state.todos)
+    }));
+  },
+
+  deleteTodoState: (id: number) => {
+    set((state) => ({
+      todos: state.todos.filter((todo) => todo.id !== id)
+    }));
   },
 
   sortTodos: (sortBy: SortType) => {
