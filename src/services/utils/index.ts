@@ -1,3 +1,3 @@
-export * from './sort-item-list';
 export * from './priority-item-list';
-export * from './formatDate';
+export * from './date-formater';
+export * from './todos-sorter';

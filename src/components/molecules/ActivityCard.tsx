@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { useModalDelete } from '@/services/store';
-import { formatedDate } from '@/services/utils';
+import { dateFormater } from '@/services/utils';
 import { TrashButton } from '@/components';
 
 type ActivityCardProps = {
@@ -30,7 +30,7 @@ export const ActivityCard = ({ cy, to, title, date }: ActivityCardProps) => {
       </Link>
 
       <div className='flex items-center justify-between text-sm font-medium text-dark-3'>
-        <p data-cy='activity-item-date'>{formatedDate(date)}</p>
+        <p data-cy='activity-item-date'>{dateFormater(date)}</p>
 
         <TrashButton buttonType='activity' onClick={handleButtonDelete} />
       </div>
