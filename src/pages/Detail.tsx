@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
-import { getDetail, update } from '@/services/api/activity';
-import { useActivity } from '@/services/store';
+import * as aApi from '@/services/api/activity';
+import { useActivity, useTodo } from '@/services/store';
 import { BaseLayout, Overlay } from '@/components/layouts';
-import { Button, ModalAdd, SortButton, TodoItem } from '@/components';
+import { Button, ModalAdd, SortButton, TodoList } from '@/components';
 
-// import addTodoList from '@/assets/svg/add-todo-list.svg';
+import addTodoList from '@/assets/svg/add-todo-list.svg';
 
 export const Detail = () => {
   const { activityId } = useParams();
@@ -18,13 +18,15 @@ export const Detail = () => {
   const inputTitleRef = useRef<HTMLInputElement>(null);
 
   const { detailActivity, setDetailActivity, updateActivityState } = useActivity((state) => state);
+  const { todos } = useTodo((state) => state);
 
   useEffect(() => {
     getActivity();
   }, []);
 
   const getActivity = async () => {
-    await getDetail(activityId)
+    await aApi
+      .getDetail(activityId)
       .then((res) => setDetailActivity(res.data))
       .catch((err) => console.log(err));
   };
@@ -36,12 +38,10 @@ export const Detail = () => {
     const newTitle = inputTitleRef.current?.value;
     newData.title = newTitle + '';
 
-    try {
-      await update(activityId, newData);
-      updateActivityState(newData);
-    } catch (err) {
-      console.log(err);
-    }
+    await aApi
+      .update(activityId, newData)
+      .then(() => updateActivityState(newData))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -91,19 +91,22 @@ export const Detail = () => {
           </div>
         </div>
 
+        {todos.length < 1 && (
+          <div className='mt-24 flex justify-center'>
+            <img
+              data-cy='todo-empty-state'
+              src={addTodoList}
+              alt='add first todo'
+              className='cursor-pointer'
+            />
+          </div>
+        )}
+
         <div className='mt-12'>
-          <TodoItem />
+          <TodoList />
         </div>
       </BaseLayout>
-      {/* illustration */}
-      {/* <div className='mt-24 flex justify-center'>
-        <img
-          data-cy='todo-empty-state'
-          src={addTodoList}
-          alt='add first todo'
-          className='cursor-pointer'
-        />
-        </div> */}
+
       {isModal && (
         <Overlay>
           <ModalAdd handleClickOutside={() => setIsModal(false)} />
