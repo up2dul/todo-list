@@ -1,20 +1,14 @@
 /* eslint-disable no-unused-vars */
 import create from 'zustand';
 
-import type { Priority } from '@/types';
-
-export type Todo = {
-  id: number;
-  title: string;
-  activity_group_id: number;
-  is_active: boolean;
-  priority: Priority;
-};
+import type { Priority, SortType, Todo } from '@/types';
+import { todosSorter } from '@/services/utils';
 
 type Todos = {
   todos: Todo[];
   detailTodo: Todo;
   setTodos: (data: Todo[]) => void;
+  sortTodos: (sortBy: SortType) => void;
 };
 
 export const useTodo = create<Todos>((set) => ({
@@ -29,5 +23,11 @@ export const useTodo = create<Todos>((set) => ({
 
   setTodos: (data: Todo[]) => {
     set({ todos: data });
+  },
+
+  sortTodos: (sortBy: SortType) => {
+    set((state) => ({
+      todos: todosSorter(state.todos, sortBy)
+    }));
   }
 }));
