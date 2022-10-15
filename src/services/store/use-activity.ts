@@ -1,19 +1,22 @@
 /* eslint-disable no-unused-vars */
 import create from 'zustand';
 
-type State = {
+import type { Todo } from './use-todo';
+
+type Activity = {
   id: number;
   title: string;
   created_at: Date;
+  todo_items: Todo[];
 };
 
 type Activities = {
-  activities: State[];
-  detailActivity: State;
-  setActivities: (data: State[]) => void;
-  setDetailActivity: (data: State) => void;
-  addActivityState: (data: State) => void;
-  updateActivityState: (newData: State) => void;
+  activities: Activity[];
+  detailActivity: Activity;
+  setActivities: (data: Activity[]) => void;
+  setDetailActivity: (data: Activity) => void;
+  addActivityState: (data: Activity) => void;
+  updateActivityState: (newData: Activity) => void;
   deleteActivityState: (id: number) => void;
 };
 
@@ -22,25 +25,26 @@ export const useActivity = create<Activities>((set) => ({
   detailActivity: {
     id: 0,
     title: '',
-    created_at: new Date()
+    created_at: new Date(),
+    todo_items: []
   },
 
-  setActivities: (data: State[]) => {
+  setActivities: (data: Activity[]) => {
     set({ activities: data });
   },
 
-  setDetailActivity: (data: State) => {
+  setDetailActivity: (data: Activity) => {
     set({ detailActivity: data });
   },
 
-  addActivityState: (newData: State) => {
+  addActivityState: (newData: Activity) => {
     set((state) => ({
       activities: [newData, ...state.activities]
     }));
   },
 
-  updateActivityState: (newData: State) => {
-    const updateTitle = (activities: State[]) => {
+  updateActivityState: (newData: Activity) => {
+    const updateTitle = (activities: Activity[]) => {
       activities.forEach((a) => {
         if (a.id === newData.id) a.title = newData.title;
       });
