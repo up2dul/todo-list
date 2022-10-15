@@ -1,9 +1,11 @@
 import clsx from 'clsx';
 import { TbCheck } from 'react-icons/tb';
 
-import type { DropdownItemProps } from '@/types';
+import type { TodoSortProps } from '@/types';
 
-export const SortItem = ({ cy, icon, title, isChecked }: DropdownItemProps) => {
+type DropdownItemProps = TodoSortProps & { onClick: () => void };
+
+export const SortItem = ({ cy, onClick, icon, title, isChecked }: DropdownItemProps) => {
   const classes: string = clsx(
     'w-[235px]',
     'flex items-center justify-between',
@@ -13,7 +15,7 @@ export const SortItem = ({ cy, icon, title, isChecked }: DropdownItemProps) => {
   );
 
   return (
-    <li data-cy={cy} className={classes}>
+    <li data-cy={cy} className={classes} onClick={onClick}>
       <div className='flex items-center gap-3'>
         {icon}
         <span>{title}</span>

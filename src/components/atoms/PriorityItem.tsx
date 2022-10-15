@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { TbCheck } from 'react-icons/tb';
 
-import type { DropdownItemProps } from '@/types';
+import type { TodoSortProps } from '@/types';
 
-export const PriorityItem = ({ cy, icon, title, isChecked }: DropdownItemProps) => {
+export const PriorityItem = ({ cy, icon, title, isChecked }: TodoSortProps) => {
   const classes: string = clsx(
     'w-[235px]',
     'flex items-center justify-between',
