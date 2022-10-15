@@ -6,3 +6,5 @@ export type DropdownItemProps = {
   title: string;
   isChecked: boolean;
 };
+
+export type Priority = 'very-high' | 'high' | 'medium' | 'low' | 'very-low';
