@@ -5,7 +5,7 @@ import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 import * as aApi from '@/services/api/activity';
 import { useActivity, useTodo } from '@/services/store';
 import { BaseLayout, Overlay } from '@/components/layouts';
-import { Button, ModalAdd, SortButton, TodoList } from '@/components';
+import { Button, ModalTodo, SortButton, TodoList } from '@/components';
 
 import addTodoList from '@/assets/svg/add-todo-list.svg';
 
@@ -108,7 +108,7 @@ export const Detail = () => {
 
       {isModal && (
         <Overlay>
-          <ModalAdd handleClickOutside={() => setIsModal(false)} />
+          <ModalTodo type='add' />
         </Overlay>
       )}
     </>
