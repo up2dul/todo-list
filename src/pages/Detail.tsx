@@ -76,10 +76,9 @@ export const Detail = () => {
 
             <span
               data-cy='todo-title-edit-button'
-              className='cursor-pointer text-2xl text-dark-3'
               title='Edit title'
               onClick={() => setIsEditTitle(true)}>
-              <TbPencil />
+              <TbPencil className='cursor-pointer text-2xl text-dark-3 hover:text-dark-1' />
             </span>
           </div>
 
