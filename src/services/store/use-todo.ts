@@ -6,7 +6,6 @@ import { todosSorter } from '@/services/utils';
 
 type Todos = {
   todos: Todo[];
-  detailTodo: Todo;
   setTodos: (data: Todo[]) => void;
   addTodoState: (newData: Todo) => void;
   updateTodoState: (newData: Todo) => void;
@@ -16,13 +15,6 @@ type Todos = {
 
 export const useTodo = create<Todos>((set) => ({
   todos: [],
-  detailTodo: {
-    id: 0,
-    title: '',
-    activity_group_id: 0,
-    is_active: true,
-    priority: 'very-high'
-  },
 
   setTodos: (data: Todo[]) => {
     set({ todos: data });
