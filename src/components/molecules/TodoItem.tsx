@@ -23,7 +23,7 @@ export const TodoItem = ({ cy, title, priority, isActive, onCheck, onDelete }: T
       <input
         data-cy='todo-item-checkbox'
         type='checkbox'
-        className='h-5 w-5'
+        className='h-5 w-5 cursor-pointer'
         checked={!isActive}
         onChange={onCheck}
       />
@@ -39,8 +39,8 @@ export const TodoItem = ({ cy, title, priority, isActive, onCheck, onDelete }: T
         {title}
       </h1>
 
-      <span data-cy='todo-item-edit-button' className='cursor-pointer text-xl text-dark-3'>
-        <TbPencil />
+      <span data-cy='todo-item-edit-button' title='Edit todo'>
+        <TbPencil className='cursor-pointer text-xl text-dark-3 hover:text-dark-1' />
       </span>
     </div>
 
