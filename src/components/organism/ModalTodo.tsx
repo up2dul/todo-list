@@ -4,13 +4,18 @@ import { TbX } from 'react-icons/tb';
 import { useClickOutside } from '@/hooks';
 import { FormLayout } from '@/components/layouts';
 import { Button, PriorityButton } from '@/components';
+import { useModalTodo } from '@/services/store';
 
-type ModalAddProps = {
-  handleClickOutside: () => void;
+type ModalTodoProps = {
+  type: 'add' | 'edit';
 };
 
-export const ModalAdd = ({ handleClickOutside }: ModalAddProps) => {
+export const ModalTodo = ({ type }: ModalTodoProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const { modal, closeModal } = useModalTodo((state) => state);
+
+  const handleClickOutside = () => closeModal();
 
   useClickOutside(modalRef, handleClickOutside);
 
@@ -29,40 +34,18 @@ export const ModalAdd = ({ handleClickOutside }: ModalAddProps) => {
 
       <div className='px-10 py-10'>
         <form className='flex flex-col gap-6'>
-          <FormLayout cyLabel='modal-add-name-title' label='NAMA LIST ITEM'>
+          <FormLayout cyLabel={`modal-${type}-name-title`} label='NAMA LIST ITEM'>
             <input
-              data-cy='modal-add-name-input'
+              data-cy={`modal-${type}-name-input`}
               type='text'
               placeholder='Tambahkan nama list item'
+              defaultValue={modal?.title}
               className='mt-2 block w-full rounded-md border border-secondary py-4 px-5'
             />
           </FormLayout>
 
-          <FormLayout cyLabel='modal-add-priority-title' label='PRIORITY'>
+          <FormLayout cyLabel={`modal-${type}-priority-title`} label='PRIORITY'>
             <PriorityButton />
-            {/* <select
-              data-cy='modal-add-priority-dropdown'
-              className='mt-2 block rounded-md py-4 px-5'>
-              <option
-                data-cy='modal-add-priority-very-high'
-                value='very-high'
-                className='py-4 px-5'
-                selected>
-                Very High
-              </option>
-              <option data-cy='modal-add-priority-high' value='high'>
-                High
-              </option>
-              <option data-cy='modal-add-priority-medium' value='medium'>
-                Medium
-              </option>
-              <option data-cy='modal-add-priority-low' value='low'>
-                Low
-              </option>
-              <option data-cy='modal-add-priority-very-low' value='very-low'>
-                Very Low
-              </option>
-            </select> */}
           </FormLayout>
         </form>
       </div>
