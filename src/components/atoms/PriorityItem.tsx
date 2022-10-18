@@ -1,9 +1,11 @@
 import clsx from 'clsx';
 import { TbCheck } from 'react-icons/tb';
 
-import type { TodoSortProps } from '@/types';
+import type { TodoPriority } from '@/types';
 
-export const PriorityItem = ({ cy, icon, title, isChecked }: TodoSortProps) => {
+type PriorityItemProps = TodoPriority & { onClick: () => void };
+
+export const PriorityItem = ({ cy, onClick, icon, title, isChecked }: PriorityItemProps) => {
   const classes: string = clsx(
     'w-[235px]',
     'flex items-center justify-between',
@@ -13,7 +15,7 @@ export const PriorityItem = ({ cy, icon, title, isChecked }: TodoSortProps) => {
   );
 
   return (
-    <li data-cy={cy} className={classes}>
+    <li data-cy={'modal-add-priority-' + cy} className={classes} onClick={onClick}>
       <div className='flex items-center gap-3'>
         {icon}
         <span>{title}</span>

@@ -3,19 +3,28 @@ import { ChangeEvent } from 'react';
 import clsx from 'clsx';
 import { TbPencil } from 'react-icons/tb';
 
-import type { Priority } from '@/types';
+import type { PriorityType } from '@/types';
 import { PriorityIndicator, TrashButton } from '@/components';
 
 type TodoItemProps = {
   cy: number;
+  todoId: number;
   title: string;
-  priority: Priority;
+  priority: PriorityType;
   isActive: boolean;
   onCheck: (e: ChangeEvent<HTMLInputElement>) => void;
   onDelete: () => void;
 };
 
-export const TodoItem = ({ cy, title, priority, isActive, onCheck, onDelete }: TodoItemProps) => (
+export const TodoItem = ({
+  cy,
+  todoId,
+  title,
+  priority,
+  isActive,
+  onCheck,
+  onDelete
+}: TodoItemProps) => (
   <div
     data-cy={'todo-item-' + cy}
     className='flex items-center justify-between rounded-xl bg-light-1 p-7 shadow-md'>

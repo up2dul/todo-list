@@ -1,7 +1,7 @@
-import type { Priority } from '@/types';
+import type { PriorityType } from '@/types';
 
 type PriorityIndicatorProps = {
-  priority: Priority;
+  priority: PriorityType;
 };
 
 export const PriorityIndicator = ({ priority }: PriorityIndicatorProps) => {

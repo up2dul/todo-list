@@ -1,10 +1,17 @@
 import { ReactNode } from 'react';
 
-export type TodoSortProps = {
-  cy: string;
+export type TodoSortPriority = {
   icon: ReactNode;
   title: string;
   isChecked: boolean;
+};
+
+export type TodoPriority = TodoSortPriority & {
+  cy: PriorityType;
+};
+
+export type TodoSort = TodoSortPriority & {
+  cy: SortType;
 };
 
 export type Todo = {
@@ -12,21 +19,16 @@ export type Todo = {
   title: string;
   activity_group_id: number;
   is_active: boolean;
-  priority: Priority;
+  priority: PriorityType;
 };
-
-export type Priority = 'very-high' | 'high' | 'medium' | 'low' | 'very-low';
 
 export type TodoData = {
-  title: string;
-  is_active: boolean;
-  priority: Priority;
+  title: string | undefined;
+  is_active?: boolean;
+  priority: PriorityType;
+  activity_group_id: number;
 };
 
-export type SortType =
-  | 'sort-latest'
-  | 'sort-oldest'
-  | 'sort-az'
-  | 'sort-za'
-  | 'sort-unfinished'
-  | string;
+export type PriorityType = 'very-high' | 'high' | 'medium' | 'low' | 'very-low';
+
+export type SortType = 'sort-latest' | 'sort-oldest' | 'sort-az' | 'sort-za' | 'sort-unfinished';

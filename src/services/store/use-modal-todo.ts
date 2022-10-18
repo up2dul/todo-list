@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import create from 'zustand';
 
-import type { Priority } from '@/types';
+import type { PriorityType } from '@/types';
 
 type Modal = {
   id: number;
   title: string;
-  priority: Priority;
+  priority: PriorityType;
 };
 
 type ModalTodo = {

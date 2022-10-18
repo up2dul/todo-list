@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { TbCheck } from 'react-icons/tb';
 
-import type { TodoSortProps } from '@/types';
+import type { TodoSort } from '@/types';
 
-type DropdownItemProps = TodoSortProps & { onClick: () => void };
+type DropdownItemProps = TodoSort & { onClick: () => void };
 
 export const SortItem = ({ cy, onClick, icon, title, isChecked }: DropdownItemProps) => {
   const classes: string = clsx(
