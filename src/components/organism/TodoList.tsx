@@ -19,10 +19,10 @@ export const TodoList = () => {
   const { isShow: isShowAlertDelete } = useAlertInformation((state) => state);
 
   useEffect(() => {
-    getActivities();
+    getTodos();
   }, []);
 
-  const getActivities = async () => {
+  const getTodos = async () => {
     setIsLoading(true);
 
     await getAll(activityId)
