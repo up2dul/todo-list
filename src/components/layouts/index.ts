@@ -1,3 +1,3 @@
 export * from './BaseLayout';
-export * from './FormLayout';
+export * from './InputLayout';
 export * from './Overlay';

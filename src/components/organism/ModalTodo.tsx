@@ -6,7 +6,7 @@ import type { TodoData } from '@/types';
 import { create, update } from '@/services/api/todo';
 import { useModalTodo, useTodo, useTodoPriority } from '@/services/store';
 import { useClickOutside } from '@/hooks';
-import { FormLayout } from '@/components/layouts';
+import { InputLayout } from '@/components/layouts';
 import { Button, PriorityButton } from '@/components';
 
 type ModalTodoProps = {
@@ -70,7 +70,7 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
       </div>
 
       <form className='flex flex-col gap-6 px-10 py-10'>
-        <FormLayout cyLabel={`modal-${type}-name-title`} label='NAMA LIST ITEM'>
+        <InputLayout cyLabel={`modal-${type}-name-title`} label='NAMA LIST ITEM'>
           <input
             ref={inputTitleRef}
             data-cy={`modal-${type}-name-input`}
@@ -79,11 +79,11 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
             defaultValue={modal?.title}
             className='mt-2 block w-full rounded-md border border-secondary py-4 px-5'
           />
-        </FormLayout>
+        </InputLayout>
 
-        <FormLayout cyLabel={`modal-${type}-priority-title`} label='PRIORITY'>
+        <InputLayout cyLabel={`modal-${type}-priority-title`} label='PRIORITY'>
           <PriorityButton />
-        </FormLayout>
+        </InputLayout>
       </form>
 
       <div className='flex flex-row-reverse border-t border-secondary px-10 py-5'>
