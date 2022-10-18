@@ -20,7 +20,7 @@ export const TodoList = () => {
 
   useEffect(() => {
     getTodos();
-  }, []);
+  }, [todos]);
 
   const getTodos = async () => {
     setIsLoading(true);
