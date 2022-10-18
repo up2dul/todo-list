@@ -8,11 +8,11 @@ import {
   TbSortDescendingLetters
 } from 'react-icons/tb';
 
-import type { SortType, TodoSortProps } from '@/types';
+import type { SortType, TodoSort } from '@/types';
 
 const iconProps: { className: string } = { className: 'text-primary' };
 
-const initSortProps: TodoSortProps[] = [
+const initSortProps: TodoSort[] = [
   {
     cy: 'sort-latest',
     icon: <TbSortDescending {...iconProps} />,
@@ -45,16 +45,16 @@ const initSortProps: TodoSortProps[] = [
   }
 ];
 
-type SortProps = {
-  todoSortProps: TodoSortProps[];
+type TodosSort = {
+  todoSortProps: TodoSort[];
   setChecked: (cy: SortType) => void;
 };
 
-export const useTodoSortProps = create<SortProps>((set) => ({
+export const useTodoSort = create<TodosSort>((set) => ({
   todoSortProps: initSortProps,
 
   setChecked: (cy: SortType) => {
-    const check = (list: TodoSortProps[]) => {
+    const check = (list: TodoSort[]) => {
       list.forEach((l) => {
         l.isChecked = false;
         if (l.cy === cy) l.isChecked = true;
