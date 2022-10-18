@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
 import * as aApi from '@/services/api/activity';
-import { useActivity, useTodo } from '@/services/store';
+import { useActivity, useModalTodo, useTodo } from '@/services/store';
 import { BaseLayout, Overlay } from '@/components/layouts';
 import { Button, ModalTodo, SortButton, TodoList } from '@/components';
 
@@ -13,12 +13,13 @@ export const Detail = () => {
   const { activityId } = useParams();
 
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
-  const [isModal, setIsModal] = useState<boolean>(false);
 
   const inputTitleRef = useRef<HTMLInputElement>(null);
 
   const { detailActivity, setDetailActivity, updateActivityState } = useActivity((state) => state);
   const { todos } = useTodo((state) => state);
+
+  const { isShow, openModal } = useModalTodo((state) => state);
 
   useEffect(() => {
     getActivity();
@@ -84,7 +85,7 @@ export const Detail = () => {
 
           <div className='flex items-center gap-5'>
             <SortButton />
-            <Button cy='todo-add-button' onClick={() => setIsModal(true)} color='primary'>
+            <Button cy='todo-add-button' onClick={openModal} color='primary'>
               <TbPlus /> Tambah
             </Button>
           </div>
@@ -106,7 +107,7 @@ export const Detail = () => {
         </div>
       </BaseLayout>
 
-      {isModal && (
+      {isShow && (
         <Overlay>
           <ModalTodo type='add' />
         </Overlay>

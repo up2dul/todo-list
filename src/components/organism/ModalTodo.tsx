@@ -1,23 +1,46 @@
 import { useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import { TbX } from 'react-icons/tb';
 
+import type { TodoData } from '@/types';
+import { create } from '@/services/api/todo';
+import { useModalTodo, useTodo, useTodoPriority } from '@/services/store';
 import { useClickOutside } from '@/hooks';
 import { FormLayout } from '@/components/layouts';
 import { Button, PriorityButton } from '@/components';
-import { useModalTodo } from '@/services/store';
 
 type ModalTodoProps = {
   type: 'add' | 'edit';
 };
 
 export const ModalTodo = ({ type }: ModalTodoProps) => {
+  const { activityId } = useParams<'activityId'>();
+
   const modalRef = useRef<HTMLDivElement>(null);
+  const inputTitleRef = useRef<HTMLInputElement>(null);
+
+  const { addTodoState } = useTodo((state) => state);
 
   const { modal, closeModal } = useModalTodo((state) => state);
 
-  const handleClickOutside = () => closeModal();
+  const { todoPriority } = useTodoPriority((state) => state);
+  const selectedPriority = todoPriority.filter((todo) => todo.isChecked === true)[0];
 
-  useClickOutside(modalRef, handleClickOutside);
+  const handleSubmit = async () => {
+    const newTitle = inputTitleRef.current?.value;
+    const newData: TodoData = {
+      title: newTitle,
+      priority: selectedPriority.cy,
+      activity_group_id: parseInt(activityId!)
+    };
+
+    await create(newData)
+      .then((res) => addTodoState(res.data))
+      .catch((err) => console.log(err))
+      .finally(() => closeModal());
+  };
+
+  useClickOutside(modalRef, closeModal);
 
   return (
     <div
@@ -25,36 +48,34 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
       data-cy='modal-add'
       className='w-3/4 rounded-lg bg-light-1 text-dark-1 lg:w-1/2'>
       <div className='flex items-center justify-between border-b border-secondary px-10 py-6 font-medium'>
-        <h1 className='text-lg text-dark-1'>Tambah list item</h1>
+        <h1 data-cy={`modal-${type}-title`} className='text-lg text-dark-1'>
+          Tambah list item
+        </h1>
         <TbX
-          onClick={handleClickOutside}
+          onClick={closeModal}
           className='cursor-pointer text-2xl text-dark-3 hover:text-dark-1'
         />
       </div>
 
-      <div className='px-10 py-10'>
-        <form className='flex flex-col gap-6'>
-          <FormLayout cyLabel={`modal-${type}-name-title`} label='NAMA LIST ITEM'>
-            <input
-              data-cy={`modal-${type}-name-input`}
-              type='text'
-              placeholder='Tambahkan nama list item'
-              defaultValue={modal?.title}
-              className='mt-2 block w-full rounded-md border border-secondary py-4 px-5'
-            />
-          </FormLayout>
+      <form className='flex flex-col gap-6 px-10 py-10'>
+        <FormLayout cyLabel={`modal-${type}-name-title`} label='NAMA LIST ITEM'>
+          <input
+            ref={inputTitleRef}
+            data-cy={`modal-${type}-name-input`}
+            type='text'
+            placeholder='Tambahkan nama list item'
+            defaultValue={modal?.title}
+            className='mt-2 block w-full rounded-md border border-secondary py-4 px-5'
+          />
+        </FormLayout>
 
-          <FormLayout cyLabel={`modal-${type}-priority-title`} label='PRIORITY'>
-            <PriorityButton />
-          </FormLayout>
-        </form>
-      </div>
+        <FormLayout cyLabel={`modal-${type}-priority-title`} label='PRIORITY'>
+          <PriorityButton />
+        </FormLayout>
+      </form>
 
       <div className='flex flex-row-reverse border-t border-secondary px-10 py-5'>
-        <Button
-          cy='modal-add-save-button'
-          onClick={() => console.log('dari modal')}
-          color='primary'>
+        <Button cy={`modal-${type}-save-button`} onClick={handleSubmit} color='primary'>
           Simpan
         </Button>
       </div>
