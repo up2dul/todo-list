@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { TbX } from 'react-icons/tb';
 
 import type { TodoData } from '@/types';
-import { create } from '@/services/api/todo';
+import { create, update } from '@/services/api/todo';
 import { useModalTodo, useTodo, useTodoPriority } from '@/services/store';
 import { useClickOutside } from '@/hooks';
 import { FormLayout } from '@/components/layouts';
@@ -19,9 +19,9 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const inputTitleRef = useRef<HTMLInputElement>(null);
 
-  const { addTodoState } = useTodo((state) => state);
+  const { addTodoState, updateTodoState } = useTodo((state) => state);
 
-  const { modal, closeModal } = useModalTodo((state) => state);
+  const { modal, resetModal, closeModal } = useModalTodo((state) => state);
 
   const { todoPriority } = useTodoPriority((state) => state);
   const selectedPriority = todoPriority.filter((todo) => todo.isChecked === true)[0];
@@ -34,10 +34,22 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
       activity_group_id: parseInt(activityId!)
     };
 
-    await create(newData)
-      .then((res) => addTodoState(res.data))
-      .catch((err) => console.log(err))
-      .finally(() => closeModal());
+    if (type === 'add') {
+      await create(newData)
+        .then((res) => addTodoState(res.data))
+        .catch((err) => console.log(err))
+        .finally(() => closeModal());
+    }
+
+    if (type === 'edit') {
+      await update(modal.id + '', newData)
+        .then((res) => updateTodoState(res.data))
+        .catch((err) => console.log(err))
+        .finally(() => {
+          closeModal();
+          resetModal();
+        });
+    }
   };
 
   useClickOutside(modalRef, closeModal);
@@ -49,7 +61,7 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
       className='w-3/4 rounded-lg bg-light-1 text-dark-1 lg:w-1/2'>
       <div className='flex items-center justify-between border-b border-secondary px-10 py-6 font-medium'>
         <h1 data-cy={`modal-${type}-title`} className='text-lg text-dark-1'>
-          Tambah list item
+          {type === 'add' ? 'Tambah' : 'Edit'} list item
         </h1>
         <TbX
           onClick={closeModal}
