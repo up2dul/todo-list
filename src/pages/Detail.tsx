@@ -19,7 +19,7 @@ export const Detail = () => {
   const { detailActivity, setDetailActivity, updateActivityState } = useActivity((state) => state);
   const { todos } = useTodo((state) => state);
 
-  const { isShow, openModal } = useModalTodo((state) => state);
+  const { isShow, type: modalType, openModal } = useModalTodo((state) => state);
 
   useEffect(() => {
     getActivity();
@@ -109,7 +109,7 @@ export const Detail = () => {
 
       {isShow && (
         <Overlay>
-          <ModalTodo type='add' />
+          <ModalTodo type={modalType} />
         </Overlay>
       )}
     </>
