@@ -27,4 +27,4 @@ export const update = (id: string | undefined, newData: { title: string }) => {
   return http.patch('/activity-groups/' + id, newData);
 };
 
-export const remove = (id: string) => axios.delete('/activity-groups/' + id);
+export const remove = (id: string) => http.delete('/activity-groups/' + id);
