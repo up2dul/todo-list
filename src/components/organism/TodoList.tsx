@@ -67,6 +67,7 @@ export const TodoList = () => {
         {todos?.map((todo, i) => (
           <TodoItem
             key={todo.id}
+            todoId={todo.id}
             cy={i}
             title={todo.title}
             priority={todo.priority}
