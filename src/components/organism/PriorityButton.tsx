@@ -1,12 +1,17 @@
 import { useRef, useState } from 'react';
 import { TbChevronDown } from 'react-icons/tb';
 
+import { useTodoPriority } from '@/services/store';
 import { useClickOutside } from '@/hooks';
 import { PriorityList } from '@/components';
 
 export const PriorityButton = () => {
   const [isExpand, setIsExpand] = useState<boolean>(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  const { todoPriority } = useTodoPriority((state) => state);
+  const selectedPriority = todoPriority.filter((todo) => todo.isChecked === true)[0];
 
   const handleClickOutside = () => setIsExpand(false);
   const handleToggle = () => setIsExpand(!isExpand);
@@ -14,14 +19,13 @@ export const PriorityButton = () => {
   useClickOutside(buttonRef, handleClickOutside);
 
   return (
-    <div className='relative'>
+    <div ref={buttonRef} className='relative'>
       <button
-        ref={buttonRef}
         type='button'
         data-cy='modal-add-priority-dropdown'
         onClick={handleToggle}
         className='w-1/4 cursor-pointer rounded-md border border-secondary p-3'>
-        Very High <TbChevronDown className='inline' />
+        {selectedPriority?.title} <TbChevronDown className='inline' />
       </button>
 
       {isExpand && <PriorityList />}
