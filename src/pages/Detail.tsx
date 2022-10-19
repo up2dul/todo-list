@@ -29,7 +29,7 @@ export const Detail = () => {
     await aApi
       .getDetail(activityId)
       .then((res) => setDetailActivity(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('There is an error:', err.message));
   };
 
   const handleBlur = async () => {
@@ -42,7 +42,7 @@ export const Detail = () => {
     await aApi
       .update(activityId, newData)
       .then(() => updateActivityState(newData))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('There is an error:', err.message));
   };
 
   return (

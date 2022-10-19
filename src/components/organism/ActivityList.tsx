@@ -19,7 +19,7 @@ export const ActivityList = () => {
 
     await getAll()
       .then((res) => setActivities(res.data.data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log('There is an error:', err.message))
       .finally(() => setIsLoading(false));
   };
 

@@ -27,7 +27,7 @@ export const TodoList = () => {
 
     await getAll(activityId)
       .then((res) => setTodos(res.data.data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log('There is an error:', err.message))
       .finally(() => setIsLoading(false));
   };
 
@@ -39,7 +39,7 @@ export const TodoList = () => {
 
     await update(todoId + '', newData)
       .then((res) => updateTodoState(res.data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log('There is an error:', err.message))
       .finally(() => setIsLoading(false));
   };
 

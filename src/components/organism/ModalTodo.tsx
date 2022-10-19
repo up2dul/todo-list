@@ -9,11 +9,7 @@ import { useClickOutside } from '@/hooks';
 import { InputLayout } from '@/components/layouts';
 import { Button, PriorityButton } from '@/components';
 
-type ModalTodoProps = {
-  type: 'add' | 'edit';
-};
-
-export const ModalTodo = ({ type }: ModalTodoProps) => {
+export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
   const { activityId } = useParams<'activityId'>();
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -37,14 +33,14 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
     if (type === 'add') {
       await create(newData)
         .then((res) => addTodoState(res.data))
-        .catch((err) => console.log(err))
+        .catch((err) => console.log('There is an error:', err.message))
         .finally(() => closeModal());
     }
 
     if (type === 'edit') {
       await update(modal.id + '', newData)
         .then((res) => updateTodoState(res.data))
-        .catch((err) => console.log(err))
+        .catch((err) => console.log('There is an error:', err.message))
         .finally(() => {
           closeModal();
           resetModal();

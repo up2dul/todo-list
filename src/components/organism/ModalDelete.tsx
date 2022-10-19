@@ -23,7 +23,7 @@ export const ModalDelete = ({ type }: { type: 'activity' | 'todo' }) => {
       await aApi
         .remove(dataId + '')
         .then(() => deleteActivityState(dataId))
-        .catch((err) => console.log(err))
+        .catch((err) => console.log('There is an error:', err.message))
         .finally(() => {
           setModal(0, '');
           closeModal();
@@ -35,7 +35,7 @@ export const ModalDelete = ({ type }: { type: 'activity' | 'todo' }) => {
       await tApi
         .remove(dataId + '')
         .then(() => deleteTodoState(dataId))
-        .catch((err) => console.log(err))
+        .catch((err) => console.log('There is an error:', err.message))
         .finally(() => {
           setModal(0, '');
           closeModal();

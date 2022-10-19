@@ -15,7 +15,7 @@ export const Dashboard = () => {
   const addActivity = async () => {
     await create()
       .then((res) => addActivityState(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('There is an error:', err.message));
   };
 
   return (
