@@ -41,7 +41,7 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
       await create(newData)
         .then((res) => addTodoState(res.data))
         .catch((err) => console.log('There is an error:', err.message))
-        .finally(() => closeModal());
+        .finally(() => handleCloseModal());
     }
 
     if (type === 'edit') {
@@ -49,15 +49,18 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
         .then((res) => updateTodoState(res.data))
         .catch((err) => console.log('There is an error:', err.message))
         .finally(() => {
-          closeModal();
+          handleCloseModal();
         });
     }
+  };
 
+  const handleCloseModal = () => {
+    closeModal();
     resetModal();
     setChecked('very-high');
   };
 
-  useClickOutside(modalRef, closeModal);
+  useClickOutside(modalRef, handleCloseModal);
 
   return (
     <div
@@ -69,7 +72,7 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
           {type === 'add' ? 'Tambah' : 'Edit'} list item
         </h1>
         <TbX
-          onClick={closeModal}
+          onClick={handleCloseModal}
           className='cursor-pointer text-2xl text-dark-3 hover:text-dark-1'
         />
       </div>
