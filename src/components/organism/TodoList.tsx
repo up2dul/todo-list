@@ -1,6 +1,5 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { SpinnerCircular } from 'spinners-react';
 
 import type { TodoData } from '@/types';
 import { getAll, update } from '@/services/api/todo';
@@ -9,8 +8,6 @@ import { Overlay } from '@/components/layouts';
 import { AlertDelete, ModalDelete, TodoItem } from '@/components';
 
 export const TodoList = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const { activityId } = useParams();
 
   const { todos, setTodos, updateTodoState } = useTodo((state) => state);
@@ -23,43 +20,25 @@ export const TodoList = () => {
   }, []);
 
   const getTodos = async () => {
-    setIsLoading(true);
-
     await getAll(activityId)
       .then((res) => setTodos(res.data.data))
-      .catch((err) => console.log('There is an error:', err.message))
-      .finally(() => setIsLoading(false));
+      .catch((err) => console.log('There is an error:', err.message));
   };
 
   const handleCheck = async (e: ChangeEvent<HTMLInputElement>, todoId: number, todo: TodoData) => {
-    setIsLoading(true);
     const newData: TodoData = todo;
     const { checked } = e.target;
     newData.is_active = !checked;
 
     await update(todoId + '', newData)
       .then((res) => updateTodoState(res.data))
-      .catch((err) => console.log('There is an error:', err.message))
-      .finally(() => setIsLoading(false));
+      .catch((err) => console.log('There is an error:', err.message));
   };
 
   const handleDelete = (todoId: number, todoTitle: string) => {
     setModal(todoId, todoTitle);
     openModal();
   };
-
-  if (isLoading)
-    return (
-      <div className='mt-20 flex justify-center'>
-        <SpinnerCircular
-          size={50}
-          thickness={170}
-          speed={150}
-          color='#16ABF8'
-          secondaryColor='#ffffff'
-        />
-      </div>
-    );
 
   return (
     <>
