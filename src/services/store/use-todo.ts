@@ -29,7 +29,11 @@ export const useTodo = create<Todos>((set) => ({
   updateTodoState: (newData: Todo) => {
     const updateTodo = (todos: Todo[]) => {
       todos.forEach((todo) => {
-        if (todo.id === newData.id) todo = newData;
+        if (todo.id === newData.id) {
+          todo.title = newData.title;
+          todo.priority = newData.priority;
+          todo.is_active = newData.is_active;
+        }
       });
       return todos;
     };
