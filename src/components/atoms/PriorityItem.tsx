@@ -5,7 +5,7 @@ import type { TodoPriority } from '@/types';
 
 type PriorityItemProps = TodoPriority & { onClick: () => void };
 
-export const PriorityItem = ({ cy, onClick, icon, title, isChecked }: PriorityItemProps) => {
+export const PriorityItem = ({ onClick, icon, title, isChecked }: PriorityItemProps) => {
   const classes: string = clsx(
     'w-[235px]',
     'flex items-center justify-between',
@@ -15,7 +15,7 @@ export const PriorityItem = ({ cy, onClick, icon, title, isChecked }: PriorityIt
   );
 
   return (
-    <li data-cy={'modal-add-priority-' + cy} className={classes} onClick={onClick}>
+    <li data-cy='modal-add-priority-item' className={classes} onClick={onClick}>
       <div className='flex items-center gap-3'>
         {icon}
         <span>{title}</span>

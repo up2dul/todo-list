@@ -5,7 +5,7 @@ import type { TodoSort } from '@/types';
 
 type DropdownItemProps = TodoSort & { onClick: () => void };
 
-export const SortItem = ({ cy, onClick, icon, title, isChecked }: DropdownItemProps) => {
+export const SortItem = ({ onClick, icon, title, isChecked }: DropdownItemProps) => {
   const classes: string = clsx(
     'w-[235px]',
     'flex items-center justify-between',
@@ -15,7 +15,7 @@ export const SortItem = ({ cy, onClick, icon, title, isChecked }: DropdownItemPr
   );
 
   return (
-    <li data-cy={cy} className={classes} onClick={onClick}>
+    <li data-cy='sort-selection' className={classes} onClick={onClick}>
       <div className='flex items-center gap-3'>
         {icon}
         <span>{title}</span>

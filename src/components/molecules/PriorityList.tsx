@@ -10,7 +10,7 @@ export const PriorityList = () => {
 
   return (
     <ul
-      data-cy='sort-parent'
+      data-cy='priority-parent'
       className='absolute mt-2 h-36 overflow-scroll rounded-md bg-light-1 text-dark-2 shadow-md'>
       {todoPriority.map((props: TodoPriority) => (
         <PriorityItem key={props.cy} {...props} onClick={() => handleClick(props.cy)} />
