@@ -9,7 +9,7 @@ import { Button, ModalTodo, SortButton, TodoList } from '@/components';
 
 import addTodoList from '@/assets/svg/add-todo-list.svg';
 
-export const Detail = () => {
+const Detail = () => {
   const { activityId } = useParams();
 
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
@@ -117,3 +117,5 @@ export const Detail = () => {
     </>
   );
 };
+
+export default Detail;

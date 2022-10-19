@@ -7,7 +7,7 @@ import { ActivityList, AlertDelete, Button, ModalDelete } from '@/components';
 
 import addActivitySvg from '@/assets/svg/add-activity.svg';
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const { activities, addActivityState } = useActivity((state) => state);
   const { isShow: isShowModalDelete } = useModalDelete((state) => state);
   const { isShow: isShowAlertDelete } = useAlertInformation((state) => state);
@@ -60,3 +60,5 @@ export const Dashboard = () => {
     </>
   );
 };
+
+export default Dashboard;
