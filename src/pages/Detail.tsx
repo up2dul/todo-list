@@ -84,7 +84,7 @@ export const Detail = () => {
           </div>
 
           <div className='flex items-center gap-5'>
-            <SortButton />
+            {todos.length > 0 && <SortButton />}
             <Button cy='todo-add-button' onClick={openModal} color='primary'>
               <TbPlus /> Tambah
             </Button>
