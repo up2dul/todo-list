@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { TbPencil } from 'react-icons/tb';
 
 import type { PriorityType } from '@/types';
-import { PriorityIndicator, TrashButton } from '@/components';
 import { useModalTodo, useTodoPriority } from '@/services/store';
+import { PriorityIndicator, TrashButton } from '@/components';
 
 type TodoItemProps = {
   cy: number;
@@ -37,7 +37,6 @@ export const TodoItem = ({
     });
     setChecked(priority);
     setModalType('edit');
-    console.log('modal edit:', [todoId, title, priority]);
 
     openModal();
   };
