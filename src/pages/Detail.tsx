@@ -103,9 +103,7 @@ export const Detail = () => {
           </div>
         )}
 
-        <div className='mt-12'>
-          <TodoList />
-        </div>
+        <TodoList />
       </BaseLayout>
 
       {isShow && (
