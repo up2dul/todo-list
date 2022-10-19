@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TbX } from 'react-icons/tb';
 
@@ -12,6 +12,8 @@ import { Button, PriorityButton } from '@/components';
 export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
   const { activityId } = useParams<'activityId'>();
 
+  const [isInputEmpty, setIsInputEmpty] = useState<boolean>(true);
+
   const modalRef = useRef<HTMLDivElement>(null);
   const inputTitleRef = useRef<HTMLInputElement>(null);
 
@@ -19,8 +21,13 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
 
   const { modal, resetModal, closeModal } = useModalTodo((state) => state);
 
-  const { todoPriority } = useTodoPriority((state) => state);
+  const { todoPriority, setChecked } = useTodoPriority((state) => state);
   const selectedPriority = todoPriority.filter((todo) => todo.isChecked === true)[0];
+
+  const handleInputEmpty = () => {
+    if (inputTitleRef.current?.value.length) setIsInputEmpty(false);
+    if (!inputTitleRef.current?.value.length) setIsInputEmpty(true);
+  };
 
   const handleSubmit = async () => {
     const newTitle = inputTitleRef.current?.value;
@@ -43,9 +50,11 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
         .catch((err) => console.log('There is an error:', err.message))
         .finally(() => {
           closeModal();
-          resetModal();
         });
     }
+
+    resetModal();
+    setChecked('very-high');
   };
 
   useClickOutside(modalRef, closeModal);
@@ -74,6 +83,7 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
             placeholder='Tambahkan nama list item'
             defaultValue={modal?.title}
             className='mt-2 block w-full rounded-md border border-secondary py-4 px-5'
+            onChange={handleInputEmpty}
           />
         </InputLayout>
 
@@ -83,7 +93,10 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
       </form>
 
       <div className='flex flex-row-reverse border-t border-secondary px-10 py-5'>
-        <Button cy={`modal-${type}-save-button`} onClick={handleSubmit} color='primary'>
+        <Button
+          cy={`modal-${type}-save-button`}
+          color={isInputEmpty ? 'disabled' : 'primary'}
+          onClick={handleSubmit}>
           Simpan
         </Button>
       </div>
