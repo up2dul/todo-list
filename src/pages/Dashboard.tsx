@@ -38,6 +38,7 @@ export const Dashboard = () => {
               src={addActivitySvg}
               alt='add first activity'
               className='cursor-pointer'
+              onClick={addActivity}
             />
           </div>
         )}

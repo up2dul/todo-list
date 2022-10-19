@@ -98,6 +98,7 @@ export const Detail = () => {
               src={addTodoList}
               alt='add first todo'
               className='cursor-pointer'
+              onClick={openModal}
             />
           </div>
         )}
