@@ -14,7 +14,7 @@ export const PriorityIndicator = ({ priority }: PriorityIndicatorProps) => {
     case 'high':
       bgColor = 'bg-p-high';
       break;
-    case 'medium':
+    case 'normal':
       bgColor = 'bg-p-medium';
       break;
     case 'low':

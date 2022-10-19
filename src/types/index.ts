@@ -29,6 +29,6 @@ export type TodoData = {
   activity_group_id?: number;
 };
 
-export type PriorityType = 'very-high' | 'high' | 'medium' | 'low' | 'very-low';
+export type PriorityType = 'very-high' | 'high' | 'normal' | 'low' | 'very-low';
 
 export type SortType = 'sort-latest' | 'sort-oldest' | 'sort-az' | 'sort-za' | 'sort-unfinished';

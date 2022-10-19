@@ -18,8 +18,8 @@ const initPriority: TodoPriority[] = [
     isChecked: false
   },
   {
-    cy: 'medium',
-    icon: <PriorityIndicator priority='medium' />,
+    cy: 'normal',
+    icon: <PriorityIndicator priority='normal' />,
     title: 'Medium',
     isChecked: false
   },
