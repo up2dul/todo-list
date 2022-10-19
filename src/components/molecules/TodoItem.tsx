@@ -8,7 +8,6 @@ import { useModalTodo, useTodoPriority } from '@/services/store';
 import { PriorityIndicator, TrashButton } from '@/components';
 
 type TodoItemProps = {
-  cy: number;
   todoId: number;
   title: string;
   priority: PriorityType;
@@ -18,7 +17,6 @@ type TodoItemProps = {
 };
 
 export const TodoItem = ({
-  cy,
   todoId,
   title,
   priority,
@@ -43,7 +41,7 @@ export const TodoItem = ({
 
   return (
     <div
-      data-cy={'todo-item-' + cy}
+      data-cy='todo-item'
       className='flex items-center justify-between rounded-xl bg-light-1 p-7 shadow-md'>
       <div className='flex items-center gap-4'>
         <input

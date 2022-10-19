@@ -6,13 +6,12 @@ import { dateFormater } from '@/services/utils';
 import { TrashButton } from '@/components';
 
 type ActivityCardProps = {
-  cy: string;
   to: number;
   title: string;
   date: Date;
 };
 
-export const ActivityCard = ({ cy, to, title, date }: ActivityCardProps) => {
+export const ActivityCard = ({ to, title, date }: ActivityCardProps) => {
   const navigate = useNavigate();
 
   const { setModal, openModal } = useModalDelete((state) => state);
@@ -27,7 +26,7 @@ export const ActivityCard = ({ cy, to, title, date }: ActivityCardProps) => {
 
   return (
     <div
-      data-cy={cy}
+      data-cy='activity-item'
       className='flex h-[234px] cursor-pointer flex-col justify-between rounded-xl bg-light-1 py-6 px-7 shadow-lg'
       onClick={handleCardClick}>
       <h1 data-cy='activity-item-title' className='text-lg font-bold text-dark-1'>

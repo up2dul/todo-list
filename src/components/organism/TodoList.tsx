@@ -64,11 +64,10 @@ export const TodoList = () => {
   return (
     <>
       <div className='mt-12 flex flex-col gap-2.5'>
-        {todos?.map((todo, i) => (
+        {todos?.map((todo) => (
           <TodoItem
             key={todo.id}
             todoId={todo.id}
-            cy={i}
             title={todo.title}
             priority={todo.priority}
             isActive={todo.is_active}
