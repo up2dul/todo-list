@@ -70,7 +70,10 @@ export const Detail = () => {
                 autoFocus
               />
             ) : (
-              <h1 data-cy='todo-title' className='text-4xl font-bold text-dark-1'>
+              <h1
+                data-cy='todo-title'
+                className='text-4xl font-bold text-dark-1'
+                onClick={() => setIsEditTitle(true)}>
                 {detailActivity?.title}
               </h1>
             )}
