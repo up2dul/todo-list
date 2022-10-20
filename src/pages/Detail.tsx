@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
@@ -118,4 +118,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default memo(Detail);
