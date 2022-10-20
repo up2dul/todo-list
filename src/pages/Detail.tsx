@@ -10,7 +10,7 @@ import { Button, ModalTodo, SortButton, TodoList } from '@/components';
 import addTodoList from '@/assets/svg/add-todo-list.svg';
 
 const Detail = () => {
-  const { activityId } = useParams();
+  const { activityId } = useParams<'activityId'>();
 
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
 

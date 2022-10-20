@@ -9,9 +9,7 @@ export const AlertDelete = ({ type }: { type: 'activity' | 'todo' }) => {
 
   const { closeAlert } = useAlertInformation((state) => state);
 
-  const handleCloseModal = () => closeAlert();
-
-  useClickOutside(alertRef, handleCloseModal);
+  useClickOutside(alertRef, closeAlert);
 
   return (
     <div

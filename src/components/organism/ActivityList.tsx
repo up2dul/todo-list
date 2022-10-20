@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { getAll } from '@/services/api/activity';
+import * as aApi from '@/services/api/activity';
 import { useActivity } from '@/services/store';
 import { ActivityCard } from '@/components';
 
@@ -12,7 +12,8 @@ export const ActivityList = () => {
   }, []);
 
   const getActivities = async () => {
-    await getAll()
+    await aApi
+      .getAll()
       .then((res) => setActivities(res.data.data))
       .catch((err) => console.log('There is an error:', err.message));
   };

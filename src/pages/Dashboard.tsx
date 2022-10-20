@@ -1,6 +1,6 @@
 import { TbPlus } from 'react-icons/tb';
 
-import { create } from '@/services/api/activity';
+import * as aApi from '@/services/api/activity';
 import { useActivity, useAlertInformation, useModalDelete } from '@/services/store';
 import { BaseLayout, Overlay } from '@/components/layouts';
 import { ActivityList, AlertDelete, Button, ModalDelete } from '@/components';
@@ -14,7 +14,8 @@ const Dashboard = () => {
   const { isShow: isShowAlertDelete } = useAlertInformation((state) => state);
 
   const addActivity = async () => {
-    await create()
+    await aApi
+      .create()
       .then((res) => addActivityState(res.data))
       .catch((err) => console.log('There is an error:', err.message));
   };

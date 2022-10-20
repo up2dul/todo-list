@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { TbX } from 'react-icons/tb';
 
 import type { TodoData } from '@/types';
-import { create, update } from '@/services/api/todo';
+import * as tApi from '@/services/api/todo';
 import { useModalTodo, useTodo, useTodoPriority } from '@/services/store';
 import { useClickOutside } from '@/hooks';
 import { InputLayout } from '@/components/layouts';
@@ -38,14 +38,16 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
     };
 
     if (type === 'add') {
-      await create(newData)
+      await tApi
+        .create(newData)
         .then((res) => addTodoState(res.data))
         .catch((err) => console.log('There is an error:', err.message))
         .finally(() => handleCloseModal());
     }
 
     if (type === 'edit') {
-      await update(modal.id + '', newData)
+      await tApi
+        .update(modal.id + '', newData)
         .then((res) => updateTodoState(res.data))
         .catch((err) => console.log('There is an error:', err.message))
         .finally(() => {

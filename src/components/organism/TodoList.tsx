@@ -2,13 +2,13 @@ import { ChangeEvent, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import type { TodoData } from '@/types';
-import { getAll, update } from '@/services/api/todo';
+import * as tApi from '@/services/api/todo';
 import { useAlertInformation, useModalDelete, useTodo } from '@/services/store';
 import { Overlay } from '@/components/layouts';
 import { AlertDelete, ModalDelete, TodoItem } from '@/components';
 
 export const TodoList = () => {
-  const { activityId } = useParams();
+  const { activityId } = useParams<'activityId'>();
 
   const { todos, setTodos, updateTodoState } = useTodo((state) => state);
 
@@ -20,7 +20,8 @@ export const TodoList = () => {
   }, []);
 
   const getTodos = async () => {
-    await getAll(activityId)
+    await tApi
+      .getAll(activityId)
       .then((res) => setTodos(res.data.data))
       .catch((err) => console.log('There is an error:', err.message));
   };
@@ -30,7 +31,8 @@ export const TodoList = () => {
     const { checked } = e.target;
     newData.is_active = !checked;
 
-    await update(todoId + '', newData)
+    await tApi
+      .update(todoId + '', newData)
       .then((res) => updateTodoState(res.data))
       .catch((err) => console.log('There is an error:', err.message));
   };
