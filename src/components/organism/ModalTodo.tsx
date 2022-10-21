@@ -11,17 +11,14 @@ import { Button, PriorityButton } from '@/components';
 
 export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
   const { activityId } = useParams<'activityId'>();
-
   const [isInputEmpty, setIsInputEmpty] = useState<boolean>(true);
-
   const modalRef = useRef<HTMLDivElement>(null);
   const inputTitleRef = useRef<HTMLInputElement>(null);
 
   const { addTodoState, updateTodoState } = useTodo((state) => state);
-
   const { modal, resetModal, closeModal } = useModalTodo((state) => state);
-
   const { todoPriority, setChecked } = useTodoPriority((state) => state);
+
   const selectedPriority = todoPriority.filter((todo) => todo.isChecked === true)[0];
 
   const handleInputEmpty = () => {

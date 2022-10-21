@@ -11,14 +11,11 @@ import addTodoList from '@/assets/svg/add-todo-list.svg';
 
 const Detail = () => {
   const { activityId } = useParams<'activityId'>();
-
   const [isEditTitle, setIsEditTitle] = useState<boolean>(false);
-
   const inputTitleRef = useRef<HTMLInputElement>(null);
 
   const { detailActivity, setDetailActivity, updateActivityState } = useActivity((state) => state);
   const { todos } = useTodo((state) => state);
-
   const { isShow, type: modalType, openModal } = useModalTodo((state) => state);
 
   useEffect(() => {

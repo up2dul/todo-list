@@ -11,7 +11,6 @@ export const TodoList = () => {
   const { activityId } = useParams<'activityId'>();
 
   const { todos, setTodos, updateTodoState } = useTodo((state) => state);
-
   const { isShow: isShowModalDelete, setModal, openModal } = useModalDelete((state) => state);
   const { isShow: isShowAlertDelete } = useAlertInformation((state) => state);
 

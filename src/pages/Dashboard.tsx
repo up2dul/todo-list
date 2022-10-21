@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { TbPlus } from 'react-icons/tb';
 
 import * as aApi from '@/services/api/activity';
@@ -6,7 +7,6 @@ import { BaseLayout, Overlay } from '@/components/layouts';
 import { ActivityList, AlertDelete, Button, ModalDelete } from '@/components';
 
 import addActivitySvg from '@/assets/svg/add-activity.svg';
-import { memo } from 'react';
 
 const Dashboard = () => {
   const { activities, addActivityState } = useActivity((state) => state);

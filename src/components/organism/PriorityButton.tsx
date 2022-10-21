@@ -7,10 +7,10 @@ import { PriorityList } from '@/components';
 
 export const PriorityButton = () => {
   const [isExpand, setIsExpand] = useState<boolean>(false);
-
   const buttonRef = useRef<HTMLDivElement>(null);
 
   const { todoPriority } = useTodoPriority((state) => state);
+
   const selectedPriority = todoPriority.filter((todo) => todo.isChecked === true)[0];
 
   const handleClickOutside = () => setIsExpand(false);
