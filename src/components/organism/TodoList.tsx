@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import type { TodoData } from '@/types';
@@ -7,7 +7,7 @@ import { useAlertInformation, useModalDelete, useTodo } from '@/services/store';
 import { Overlay } from '@/components/layouts';
 import { AlertDelete, ModalDelete, TodoItem } from '@/components';
 
-export const TodoList = () => {
+const TodoList = () => {
   const { activityId } = useParams<'activityId'>();
 
   const { todos, setTodos, updateTodoState } = useTodo((state) => state);
@@ -71,3 +71,5 @@ export const TodoList = () => {
     </>
   );
 };
+
+export default memo(TodoList);

@@ -2,8 +2,8 @@ export * from './ModalTodo';
 export * from './ModalDelete';
 export * from './SortButton';
 export * from './PriorityButton';
-export * from './TodoList';
 
 import ActivityList from './ActivityList';
+import TodoList from './TodoList';
 
-export { ActivityList };
+export { ActivityList, TodoList };
