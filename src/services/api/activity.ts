@@ -21,14 +21,14 @@ const initData: InitData = {
   email: VITE_EMAIL
 };
 
-export const getAll = () => http.get('/activity-groups/');
+export const getAll = () => http.get('activity-groups');
 
-export const getDetail = (id: string | undefined) => http.get('/activity-groups/' + id);
+export const getDetail = (id: string | undefined) => http.get('activity-groups/' + id);
 
-export const create = () => http.post('/activity-groups/', initData);
+export const create = () => http.post('activity-groups', initData);
 
 export const update = (id: string | undefined, newData: { title: string }) => {
-  return http.patch('/activity-groups/' + id, newData);
+  return http.patch('activity-groups/' + id, newData);
 };
 
-export const remove = (id: string) => http.delete('/activity-groups/' + id);
+export const remove = (id: string) => http.delete('activity-groups/' + id);

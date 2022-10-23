@@ -13,15 +13,15 @@ const http = axios.create({
 });
 
 export const getAll = (activityId: string | undefined) => {
-  return http.get('/todo-items?activity_group_id=' + activityId);
+  return http.get('todo-items?activity_group_id=' + activityId);
 };
 
-export const getDetail = (id: string | undefined) => http.get('/todo-items/' + id);
+export const getDetail = (id: string | undefined) => http.get('todo-items/' + id);
 
-export const create = (data: TodoData) => http.post('/todo-items/', data);
+export const create = (data: TodoData) => http.post('todo-items', data);
 
 export const update = (id: string | undefined, newData: TodoData) => {
-  return http.patch('/todo-items/' + id, newData);
+  return http.patch('todo-items/' + id, newData);
 };
 
-export const remove = (id: string) => http.delete('/todo-items/' + id);
+export const remove = (id: string) => http.delete('todo-items/' + id);
