@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 
 import * as aApi from '@/services/api/activity';
 import { useActivity } from '@/services/store';
 import { ActivityCard } from '@/components';
 
-export const ActivityList = () => {
+const ActivityList = () => {
   const { activities, setActivities } = useActivity((state) => state);
 
   useEffect(() => {
@@ -26,3 +26,5 @@ export const ActivityList = () => {
     </div>
   );
 };
+
+export default memo(ActivityList);
