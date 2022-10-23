@@ -8,10 +8,10 @@ const ActivityList = () => {
   const { activities, setActivities } = useActivity((state) => state);
 
   useEffect(() => {
-    getActivities();
+    getActivityList();
   }, []);
 
-  const getActivities = async () => {
+  const getActivityList = async () => {
     await aApi
       .getAll()
       .then((res) => setActivities(res.data.data))
