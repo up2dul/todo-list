@@ -5,7 +5,11 @@ import type { TodoData } from '@/types';
 const { VITE_BASE_URL } = import.meta.env;
 
 const http = axios.create({
-  baseURL: VITE_BASE_URL
+  baseURL: VITE_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  }
 });
 
 export const getAll = (activityId: string | undefined) => {

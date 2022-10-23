@@ -4,6 +4,10 @@ const { VITE_BASE_URL, VITE_EMAIL } = import.meta.env;
 
 const http = axios.create({
   baseURL: VITE_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  },
   params: { email: VITE_EMAIL }
 });
 
