@@ -5,7 +5,7 @@ import { useActivity } from '@/services/store';
 import { ActivityCard } from '@/components';
 
 const ActivityList = () => {
-  const { activities, setActivities } = useActivity.getState();
+  const { activities, setActivities } = useActivity((state) => state);
 
   useEffect(() => {
     getActivities();
