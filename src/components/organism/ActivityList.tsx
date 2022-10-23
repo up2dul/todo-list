@@ -5,13 +5,13 @@ import { useActivity } from '@/services/store';
 import { ActivityCard } from '@/components';
 
 const ActivityList = () => {
-  const { activities, setActivities } = useActivity((state) => state);
+  const { activities, setActivities } = useActivity.getState();
 
   useEffect(() => {
-    getActivityList();
+    getActivities();
   }, []);
 
-  const getActivityList = async () => {
+  const getActivities = async () => {
     await aApi
       .getAll()
       .then((res) => setActivities(res.data.data))
