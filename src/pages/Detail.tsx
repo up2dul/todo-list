@@ -4,7 +4,7 @@ import { TbChevronLeft, TbPencil, TbPlus } from 'react-icons/tb';
 
 import * as aApi from '@/services/api/activity';
 import { useActivity, useModalTodo, useTodo } from '@/services/store';
-import { BaseLayout, Overlay } from '@/components/layouts';
+import { Overlay } from '@/components/layouts';
 import { Button, ModalTodo, SortButton, TodoList } from '@/components';
 
 import addTodoList from '@/assets/svg/add-todo-list.svg';
@@ -44,67 +44,65 @@ const Detail = () => {
 
   return (
     <>
-      <BaseLayout>
-        <div className='flex items-center justify-between gap-5'>
-          <div className='flex items-center gap-5'>
-            <Link to='/'>
-              <span
-                data-cy='todo-back-button'
-                className='cursor-pointer text-3xl'
-                title='Back to dashboard'>
-                <TbChevronLeft />
-              </span>
-            </Link>
-
-            {isEditTitle ? (
-              <input
-                ref={inputTitleRef}
-                type='text'
-                defaultValue={detailActivity?.title}
-                maxLength={26}
-                onBlur={handleBlur}
-                className='w-3/4 bg-light-2 text-4xl font-bold text-dark-1 outline-none focus:border-b'
-                autoFocus
-              />
-            ) : (
-              <h1
-                data-cy='todo-title'
-                className='text-4xl font-bold text-dark-1'
-                onClick={() => setIsEditTitle(true)}>
-                {detailActivity?.title}
-              </h1>
-            )}
-
+      <div className='flex items-center justify-between gap-5'>
+        <div className='flex items-center gap-5'>
+          <Link to='/'>
             <span
-              data-cy='todo-title-edit-button'
-              title='Edit title'
-              onClick={() => setIsEditTitle(true)}>
-              <TbPencil className='cursor-pointer text-2xl text-dark-3 hover:text-dark-1' />
+              data-cy='todo-back-button'
+              className='cursor-pointer text-3xl'
+              title='Back to dashboard'>
+              <TbChevronLeft />
             </span>
-          </div>
+          </Link>
 
-          <div className='flex items-center gap-5'>
-            {todos.length > 0 && <SortButton />}
-            <Button cy='todo-add-button' onClick={openModal} color='primary'>
-              <TbPlus /> Tambah
-            </Button>
-          </div>
+          {isEditTitle ? (
+            <input
+              ref={inputTitleRef}
+              type='text'
+              defaultValue={detailActivity?.title}
+              maxLength={26}
+              onBlur={handleBlur}
+              className='w-3/4 bg-light-2 text-4xl font-bold text-dark-1 outline-none focus:border-b'
+              autoFocus
+            />
+          ) : (
+            <h1
+              data-cy='todo-title'
+              className='text-4xl font-bold text-dark-1'
+              onClick={() => setIsEditTitle(true)}>
+              {detailActivity?.title}
+            </h1>
+          )}
+
+          <span
+            data-cy='todo-title-edit-button'
+            title='Edit title'
+            onClick={() => setIsEditTitle(true)}>
+            <TbPencil className='cursor-pointer text-2xl text-dark-3 hover:text-dark-1' />
+          </span>
         </div>
 
-        {todos.length < 1 && (
-          <div className='mt-24 flex justify-center'>
-            <img
-              data-cy='todo-empty-state'
-              src={addTodoList}
-              alt='add first todo'
-              className='cursor-pointer'
-              onClick={openModal}
-            />
-          </div>
-        )}
+        <div className='flex items-center gap-5'>
+          {todos.length > 0 && <SortButton />}
+          <Button cy='todo-add-button' onClick={openModal} color='primary'>
+            <TbPlus /> Tambah
+          </Button>
+        </div>
+      </div>
 
-        <TodoList />
-      </BaseLayout>
+      {todos.length < 1 && (
+        <div className='mt-24 flex justify-center'>
+          <img
+            data-cy='todo-empty-state'
+            src={addTodoList}
+            alt='add first todo'
+            className='cursor-pointer'
+            onClick={openModal}
+          />
+        </div>
+      )}
+
+      <TodoList />
 
       {isShow && (
         <Overlay>
