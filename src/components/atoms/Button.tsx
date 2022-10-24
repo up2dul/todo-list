@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import clsx from 'clsx';
 
 type ButtonProps = {
@@ -8,7 +8,7 @@ type ButtonProps = {
   onClick: () => void;
 };
 
-export const Button = ({ children, cy, color, onClick }: ButtonProps) => {
+const Button = ({ children, cy, color, onClick }: ButtonProps) => {
   const classes: string = clsx(
     'flex h-[54px] w-[150px] items-center justify-center rounded-full text-lg font-medium',
     color === 'primary' && 'bg-primary text-light-1 hover:bg-primary/70 active:bg-primary/90',
@@ -23,3 +23,5 @@ export const Button = ({ children, cy, color, onClick }: ButtonProps) => {
     </button>
   );
 };
+
+export default memo(Button);
