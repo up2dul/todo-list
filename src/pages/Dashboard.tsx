@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { TbPlus } from 'react-icons/tb';
 
 import * as aApi from '@/services/api/activity';
@@ -9,14 +9,25 @@ import { ActivityList, AlertDelete, Button, ModalDelete } from '@/components';
 import addActivitySvg from '@/assets/svg/add-activity.svg';
 
 const Dashboard = () => {
-  const { activities, addActivityState } = useActivity((state) => state);
+  const { activities, setActivities } = useActivity((state) => state);
   const { isShow: isShowModalDelete } = useModalDelete((state) => state);
   const { isShow: isShowAlertDelete } = useAlertInformation((state) => state);
+
+  useEffect(() => {
+    getActivities();
+  }, []);
+
+  const getActivities = async () => {
+    await aApi
+      .getAll()
+      .then((res) => setActivities(res.data.data))
+      .catch((err) => console.log('There is an error:', err.message));
+  };
 
   const addActivity = async () => {
     await aApi
       .create()
-      .then((res) => addActivityState(res.data))
+      .then(() => getActivities())
       .catch((err) => console.log('There is an error:', err.message));
   };
 
@@ -32,7 +43,7 @@ const Dashboard = () => {
         </Button>
       </div>
 
-      <ActivityList />
+      <ActivityList activities={activities} />
 
       {activities.length < 1 && (
         <div className='mt-24 flex justify-center'>
