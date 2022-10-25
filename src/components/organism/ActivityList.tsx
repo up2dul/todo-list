@@ -9,7 +9,7 @@ const ActivityList = () => {
 
   useEffect(() => {
     getActivities();
-  }, []);
+  }, [activities]);
 
   const getActivities = async () => {
     await aApi
