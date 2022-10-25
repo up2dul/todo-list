@@ -3,7 +3,7 @@ import create from 'zustand';
 
 import type { Todo } from '@/types';
 
-type Activity = {
+export type Activity = {
   id: number;
   title: string;
   created_at: Date;
