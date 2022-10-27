@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { useEffect } from 'react';
 import { TbPlus } from 'react-icons/tb';
 
 import * as aApi from '@/services/api/activity';
@@ -72,4 +72,4 @@ const Dashboard = () => {
   );
 };
 
-export default memo(Dashboard);
+export default Dashboard;
