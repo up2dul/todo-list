@@ -26,7 +26,7 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
     if (!inputTitleRef.current?.value.length) setIsInputEmpty(true);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const newTitle = inputTitleRef.current?.value;
     const newData: TodoData = {
       title: newTitle,
@@ -35,7 +35,7 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
     };
 
     if (type === 'add') {
-      await tApi
+      tApi
         .create(newData)
         .then((res) => addTodoState(res.data))
         .catch((err) => console.log('There is an error:', err.message))
@@ -43,7 +43,7 @@ export const ModalTodo = ({ type }: { type: 'add' | 'edit' }) => {
     }
 
     if (type === 'edit') {
-      await tApi
+      tApi
         .update(modal.id + '', newData)
         .then((res) => updateTodoState(res.data))
         .catch((err) => console.log('There is an error:', err.message))

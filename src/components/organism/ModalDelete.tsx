@@ -18,9 +18,9 @@ export const ModalDelete = ({ type }: { type: 'activity' | 'todo' }) => {
 
   const { id: dataId, title } = modal;
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (type === 'activity') {
-      await aApi
+      aApi
         .remove(dataId + '')
         .then(() => deleteActivityState(dataId))
         .catch((err) => console.log('There is an error:', err.message))
@@ -32,7 +32,7 @@ export const ModalDelete = ({ type }: { type: 'activity' | 'todo' }) => {
     }
 
     if (type === 'todo') {
-      await tApi
+      tApi
         .remove(dataId + '')
         .then(() => deleteTodoState(dataId))
         .catch((err) => console.log('There is an error:', err.message))

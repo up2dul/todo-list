@@ -17,15 +17,15 @@ const Dashboard = () => {
     getActivities();
   }, []);
 
-  const getActivities = async () => {
-    await aApi
+  const getActivities = () => {
+    aApi
       .getAll()
       .then((res) => setActivities(res.data.data))
       .catch((err) => console.log('There is an error:', err.message));
   };
 
-  const addActivity = async () => {
-    await aApi
+  const addActivity = () => {
+    aApi
       .create()
       .then(() => getActivities())
       .catch((err) => console.log('There is an error:', err.message));

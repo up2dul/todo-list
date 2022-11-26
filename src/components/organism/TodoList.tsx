@@ -18,19 +18,19 @@ const TodoList = () => {
     getTodos();
   }, []);
 
-  const getTodos = async () => {
-    await tApi
+  const getTodos = () => {
+    tApi
       .getAll(activityId)
       .then((res) => setTodos(res.data.data))
       .catch((err) => console.log('There is an error:', err.message));
   };
 
-  const handleCheck = async (e: ChangeEvent<HTMLInputElement>, todoId: number, todo: TodoData) => {
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>, todoId: number, todo: TodoData) => {
     const newData: TodoData = todo;
     const { checked } = e.target;
     newData.is_active = !checked;
 
-    await tApi
+    tApi
       .update(todoId + '', newData)
       .then((res) => updateTodoState(res.data))
       .catch((err) => console.log('There is an error:', err.message));

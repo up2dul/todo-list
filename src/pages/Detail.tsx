@@ -22,21 +22,21 @@ const Detail = () => {
     getActivity();
   }, []);
 
-  const getActivity = async () => {
-    await aApi
+  const getActivity = () => {
+    aApi
       .getDetail(activityId)
       .then((res) => setDetailActivity(res.data))
       .catch((err) => console.log('There is an error:', err.message));
   };
 
-  const handleBlur = async () => {
+  const handleBlur = () => {
     setIsEditTitle(false);
 
     const newData = detailActivity;
     const newTitle = inputTitleRef.current?.value;
     newData.title = newTitle + '';
 
-    await aApi
+    aApi
       .update(activityId, newData)
       .then(() => updateActivityState(newData))
       .catch((err) => console.log('There is an error:', err.message));
